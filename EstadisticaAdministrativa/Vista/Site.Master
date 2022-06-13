@@ -1,0 +1,125 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="EstadisticaAdministrativa.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Css/Menu.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ajax_login" runat="server"/>
+
+        <div id="header">
+
+
+            <div class="row align-items-center">
+
+                <div class="col">
+                    <asp:Image id="ImageLogo" runat="server" Height="59px" ImageUrl="~/Img/Logo_200x60.png" 
+                        Width="190px" AlternateText="Imagen no disponible" ImageAlign="TextTop" />
+                   
+                </div>
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+
+                            <asp:LinkButton runat="server" class="navbar-brand" OnClick="Inicio_Click" CausesValidation="false">Inicio</asp:LinkButton>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <asp:Menu ID="menu" class="collapse navbar-collapse" runat="server"
+                                Orientation="Horizontal" Width="90%">
+                                <LevelMenuItemStyles>
+                                    <asp:MenuItemStyle CssClass="navbar-nav" />
+                                </LevelMenuItemStyles>
+                                <LevelSubMenuStyles>
+                                    <asp:SubMenuStyle CssClass="nav-item dropdown" />
+                                    <asp:SubMenuStyle CssClass="dropdown-menu" />
+                                    <asp:SubMenuStyle CssClass="dropdown-item" >
+                                    </asp:SubMenuStyle>
+                                </LevelSubMenuStyles>
+                            </asp:Menu>
+                        </div>
+                    </nav>
+
+                </div>
+                <div class="col">
+                    <asp:LinkButton runat="server" ID="cerrar"
+                        Font-Size="20px" OnClick="btnCerrarSesion_Click" CausesValidation="false" Visible="true" Style="font-size: 16px;" class="btn btn-dark float-left">Cerrar Sesión</asp:LinkButton>
+                </div>
+
+
+
+
+                    
+
+               <%-- <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Bienvenido:</h5>
+                        <asp:Panel ID="info_usuario" runat="server">
+                            <asp:Label ID="textNombre" runat="server">Nombre:</asp:Label>
+                            <asp:Label ID="TextNombreUsuario" runat="server"></asp:Label>
+                        </asp:Panel>
+                    </div>
+                </div>--%>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div id="content">
+            <br />
+            <div class="card" style="width:40%; margin: 0 auto;">
+                <div class="card-body">
+                    <asp:Panel ID="info_usuario" runat="server">
+                        <asp:Label ID="textNombre" runat="server">Usuario:</asp:Label>
+                        <asp:Label ID="TextNombreUsuario" runat="server"></asp:Label>
+                    </asp:Panel>
+                </div>
+            </div>
+            <div>
+                <br /><br />
+                <div class="card" style="width:50%; margin: 0 auto;border:none;">
+               <%-- <h5 class="card-header">Featured</h5>--%>
+                    <br />
+                <asp:ContentPlaceHolder ID="MainContent"
+                    runat="server">
+                    <!-- Page-specific content will go here... -->
+                </asp:ContentPlaceHolder>
+                    <br />
+            </div>
+
+            </div>
+            <br /><br />
+        </div>
+
+        <div id="navigation">
+<%--                <aside class="sidebar">
+                    <header>
+                        Menu
+                    </header>
+                    
+                </aside>--%>
+        </div>
+
+        <div id="footer">
+            
+        </div>
+    </form>
+</body>
+</html>
