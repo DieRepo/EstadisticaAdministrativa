@@ -51,7 +51,7 @@ namespace EstadisticaAdministrativa
                     {
                         id = r.GetString("idUsuario");
                         perfil = r.GetString("perfil");
-                        nombre = r.GetString("nombre") + " " + r.GetString("apellidoPaterno")+ " " + r.GetString("apellidoMaterno");
+                        nombre = r.GetString("nombre") + " " + r.GetString("apellidoPaterno") + " " + r.GetString("apellidoMaterno");
                         //idEdificio = r.GetString("idEdificio");
                         //nombreEdificio = (r.GetString("nombreEdificio") is null) ? " - - " : r.GetString("nombreEdificio");
                     }
@@ -82,12 +82,17 @@ namespace EstadisticaAdministrativa
             }
             catch (Exception ex)
             {
-                if (con != null)
-                {
-                    con.Close();
-                }
+                
                 textoError.Visible = true;
                 textoError.Text = "Usuario o contraseña incorrectos";
+                Console.WriteLine();
+            }
+            finally {
+                if (con != null)
+                {
+                    con.Dispose();
+                    con.Close();
+                }
             }
 
         }
