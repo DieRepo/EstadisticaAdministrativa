@@ -11,7 +11,29 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            MostrarCatUni();
 
+        }
+
+        protected NuevaCapacitacion Nuevover()
+        {
+            NuevaCapacitacion capacita = new NuevaCapacitacion();
+            return capacita;
+        }
+
+
+        protected void Insert(object sender, EventArgs e)
+        {
+            var guardarnuevo = Nuevover();
+
+            CapacitacionDAO.Guardar(guardarnuevo);
+        }
+
+        public void MostrarCatUni()
+        {
+            List<CatUnidades> lista = (List<CatUnidades>)CapacitacionDAO.ListAll();
+            catapoyos.DataSource = lista;
+            catapoyos.DataBind();
         }
     }
 }
