@@ -24,7 +24,7 @@ namespace EstadisticaAdministrativa
             {
 
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.AppSettings["local"]);
-                con.Open();
+                con.Open();ñ
                 str = "SELECT * FROM tblusuarios " +
                     "  where usuario=@UserName and pas=@Password and activo = 1 ";
                 com = new MySqlCommand(str, con);
@@ -83,9 +83,11 @@ namespace EstadisticaAdministrativa
             catch (Exception ex)
             {
                 
+
+                Console.WriteLine(ex.ToString());
                 textoError.Visible = true;
                 textoError.Text = "Usuario o contraseña incorrectos";
-                Console.WriteLine();
+
             }
             finally {
                 if (con != null)

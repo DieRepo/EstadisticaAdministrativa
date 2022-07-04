@@ -3,4 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Bienvenido al sistema de Estadistica Administrativa</h1>
+
+
 </asp:Content>
