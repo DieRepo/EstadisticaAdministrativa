@@ -25,6 +25,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 
                 return o;
             }
+
             catch (Exception e)
             {
 
@@ -32,6 +33,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 Debug.WriteLine("Error al guardar: " + e.Source + "\n\n" + e.Message + "\n\n" + e.InnerException + "\n\n" + e.StackTrace);
                 return o;
             }
+
             finally
             {
                 NHibernateHelper.CloseSesion();
@@ -47,11 +49,13 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                     .CreateCriteria(typeof(CatUnidades))
                     .List<CatUnidades>();
             }
+
             catch (Exception e)
             {
                 Debug.WriteLine("Error al traer al lista: " + e.Message + "\n" + e.StackTrace);
                 return null;
             }
+
             finally
             {
                 NHibernateHelper.CloseSesion();
