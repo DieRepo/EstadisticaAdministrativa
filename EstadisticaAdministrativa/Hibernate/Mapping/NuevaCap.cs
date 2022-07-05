@@ -21,7 +21,13 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.idUser);
             Map(x => x.idunidad);
             Map(X => X.id_tema);
-           // References(x => x.);
+                       
+            References(x => x.Cattemas).Column("idtema").Cascade.All();
+
+            References(x => x.CatUnidades).Column("idunidad").Cascade.All();
+
+
+
         }
 
     }

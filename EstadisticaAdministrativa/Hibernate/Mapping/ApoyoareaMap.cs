@@ -15,6 +15,10 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Id(x => x.idapoyo).GeneratedBy.Identity();
             Map(x => x.IdCapacitacion);
             Map(x => x.idunidad);
+
+            References(x => x.NuevaCapacitacion).Column("IdCapacitacion").Cascade.All();
+
+            HasMany(x => x.ApoyoArea).Inverse().AsBag().Not.LazyLoad().Cascade.All();
         }
     }
 }
