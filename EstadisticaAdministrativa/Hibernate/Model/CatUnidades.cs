@@ -9,8 +9,10 @@ namespace EstadisticaAdministrativa.Hibernate.Model
     {
         public virtual int idunidad { get; set; }
         public virtual int idarea { get; set; }
-        public virtual string nom_area { get; set; }
-        public virtual int activo_area { get; set; }
-        public virtual DateTime fecha_registro_area { get; set; }
+        public virtual string nomarea { get; set; }
+        public virtual int activoarea { get; set; }
+        public virtual DateTime fecha_reg_area { get; set; }
+
+
     }
 }
