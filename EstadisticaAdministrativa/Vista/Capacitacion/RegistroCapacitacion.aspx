@@ -92,7 +92,7 @@
 
             <asp:label for="apoyo" runat="server" class="col-sm-3 col-form-label">Area de Apoyo</asp:label>
             <div class="col-sm-9">
-                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple">
+                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px">
                    
                 </asp:ListBox>
             </div>
