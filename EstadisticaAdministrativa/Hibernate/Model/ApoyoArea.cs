@@ -14,5 +14,6 @@ namespace EstadisticaAdministrativa.Hibernate.Model
 
         public virtual CatUnidades unidadApoyo { get; set; }
         public virtual Capacitacion idCapacita { get; set; }
+
     }
 }
