@@ -30,6 +30,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
             finally
             {
                 NHibernateHelper.CloseSesion();
+
             }
 
         }

@@ -15,9 +15,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         }
 
-        protected NuevaCapacitacion Nuevover()
+        protected Capacitacion Nuevover()
         {
-            NuevaCapacitacion capacita = new NuevaCapacitacion();
+            Capacitacion capacita = new Capacitacion();
             return capacita;
         }
 
