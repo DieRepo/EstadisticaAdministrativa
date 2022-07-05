@@ -39,28 +39,5 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 NHibernateHelper.CloseSesion();
             }
         }
-
-        public static IList<CatUnidades> ListAll()
-        {
-            try
-            {
-                NHibernateHelper.OpenSession();
-                return NHibernateHelper.Sesion
-                    .CreateCriteria(typeof(CatUnidades))
-                    .List<CatUnidades>();
-            }
-
-            catch (Exception e)
-            {
-                Debug.WriteLine("Error al traer al lista: " + e.Message + "\n" + e.StackTrace);
-                return null;
-            }
-
-            finally
-            {
-                NHibernateHelper.CloseSesion();
-            }
-
-        }
     }
 }
