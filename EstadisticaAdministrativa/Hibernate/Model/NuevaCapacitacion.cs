@@ -16,6 +16,8 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual int asis_hombres { get; set; }
         public virtual int asis_mujeres { get; set; }
         public virtual int idUser { get; set; }
+        public virtual Cattemas idTema { get; set; }
+        public virtual CatUnidades unidadEncargada { get; set; }
         public virtual IList<CatUnidades> idunidad { get; set; } //area encargada
         public virtual IList<Cattemas> id_tema { get; set; }
     }

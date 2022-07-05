@@ -7,7 +7,7 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
-    class CattemaMap : ClassMap<Cattema>
+    class CattemaMap : ClassMap<Cattemas>
     {
         public CattemaMap()
         {

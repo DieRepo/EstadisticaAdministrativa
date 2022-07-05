@@ -20,11 +20,10 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.asis_mujeres);
             Map(x => x.idUser);
             Map(x => x.idunidad);
-            Map(X => X.id_tema);
                        
-            References(x => x.Cattemas).Column("idtema").Cascade.All();
+            References(x => x.idTema).Column("idtema").Cascade.All();
 
-            References(x => x.CatUnidades).Column("idunidad").Cascade.All();
+            References(x => x.unidadEncargada).Column("idunidad").Cascade.All();
 
 
 
