@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Model
 {
-    public class Capacitacion
+    public class CapacitacionRegistro
     {
         public virtual int IdCapacitacion { get; set; }
         public virtual string nom_cap { get; set; }

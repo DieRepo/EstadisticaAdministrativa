@@ -18,7 +18,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
 
             References(x => x.idCapacita).Column("IdCapacitacion").Cascade.All();
 
-            HasMany(x => x.unidadApoyo).Inverse().AsBag().Not.LazyLoad().Cascade.All();
+            /*HasMany(x => x.unidadApoyo).Inverse().AsBag().Not.LazyLoad().Cascade.All();*/
         }
     }
 }

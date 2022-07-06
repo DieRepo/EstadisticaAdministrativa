@@ -7,7 +7,7 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
-    class CapacitacionMap : ClassMap<Capacitacion>
+    class CapacitacionMap : ClassMap<CapacitacionRegistro>
     {
         public CapacitacionMap()
         {

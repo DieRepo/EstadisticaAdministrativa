@@ -79,7 +79,7 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             try
             {
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.AppSettings["local"]);
-                con.Open();
+                con.Open(); 
                 cmd = new MySqlCommand("obtenDatosTablaJusticia", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 MySqlDataReader resultado = cmd.ExecuteReader();

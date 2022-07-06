@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EstadisticaAdministrativa.Hibernate.Controller;
+using EstadisticaAdministrativa.Hibernate.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +17,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         }
 
-        protected Capacitacion Nuevover()
+        protected CapacitacionRegistro Nuevover()
         {
-            Capacitacion capacita = new Capacitacion();
+            CapacitacionRegistro capacita = new CapacitacionRegistro();
             return capacita;
         }
 
@@ -31,7 +33,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         public void MostrarCatUni()
         {
-            List<CatUnidades> lista = (List<CatUnidades>)CapacitacionDAO.ListAll();
+            List<CatUnidades> lista = (List<CatUnidades>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataBind();
         }

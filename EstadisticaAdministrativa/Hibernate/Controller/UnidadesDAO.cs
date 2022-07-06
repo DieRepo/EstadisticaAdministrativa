@@ -10,7 +10,6 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 {
     class UnidadesDAO
     {
-
         public static IList<CatUnidades> ListAll()
         {
             try

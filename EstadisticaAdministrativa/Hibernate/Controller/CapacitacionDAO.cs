@@ -11,7 +11,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
     class CapacitacionDAO
     {
 
-        public static NuevaCapacitacion Guardar(NuevaCapacitacion o)
+        public static CapacitacionRegistro Guardar(CapacitacionRegistro o)
         {
             NHibernateHelper.OpenSession();
            

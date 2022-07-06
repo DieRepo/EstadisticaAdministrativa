@@ -13,6 +13,9 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 
         public static ApoyoArea Guardar(ApoyoArea o)
         {
+
+
+
             NHibernateHelper.OpenSession();
 
 
