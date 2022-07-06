@@ -14,6 +14,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         protected void Page_Load(object sender, EventArgs e)
         {
             MostrarCatUni();
+            MostrarCatTema();
 
         }
 
@@ -36,6 +37,13 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<CatUnidades> lista = (List<CatUnidades>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataBind();
+        }
+
+        public void MostrarCatTema()
+        {
+            List<CatUnidades> lista = (List<CatUnidades>)TemaDAO.ListAllTemas();
+            tema.DataSource = lista;
+            tema.DataBind();
         }
     }
 }

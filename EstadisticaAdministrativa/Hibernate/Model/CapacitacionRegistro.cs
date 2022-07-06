@@ -20,9 +20,9 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual int fecha_registro { get; set; }
 
         public virtual Cattemas idTema { get; set; }
-        public virtual CatUnidades unidadEncargada { get; set; }
+        public virtual CatUnidades idUnidad { get; set; }
 
-        public virtual IList<CatUnidades> idunidad { get; set; } //area encargada
+        public virtual IList<CatUnidades> idunidad { get; set; } //lista unidad encargada
         public virtual IList<Cattemas> idtema { get; set; }
 
 

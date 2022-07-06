@@ -14,7 +14,7 @@
         $(function () {
             $('[id*=catapoyos]').multiselect({
                   includeSelectAllOption: true
-                        });
+            });
         });
     </script>
 </asp:Content>

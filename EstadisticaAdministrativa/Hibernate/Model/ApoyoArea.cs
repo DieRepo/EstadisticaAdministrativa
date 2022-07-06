@@ -9,11 +9,13 @@ namespace EstadisticaAdministrativa.Hibernate.Model
     public class ApoyoArea
     {
         public virtual int idapoyo { get; set; }
-        public virtual int IdCapacitacion { get; set; }
-        public virtual IList<CatUnidades> idunidad { get; set; }
+       
+        public virtual CapacitacionRegistro IdCapacitacion { get; set; }
+        public virtual CatUnidades idUnidad { get; set; }
+        public virtual IList<CatUnidades> idunidad { get; set; } //lista unidad de apoyo
 
-        public virtual CatUnidades unidadApoyo { get; set; }
-        public virtual CapacitacionRegistro idCapacita { get; set; }
+       
+    
 
     }
 }

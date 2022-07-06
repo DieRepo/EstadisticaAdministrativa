@@ -11,7 +11,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
     {
         public CapacitacionMap()
         {
-            Table("tbl_capacitacion");
+            Table("tblcapacitacion");
             Id(x => x.IdCapacitacion).GeneratedBy.Identity();
             Map(x => x.nom_cap);
             Map(x => x.fecha_inicio);
@@ -19,13 +19,13 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.tipoCap);
             Map(x => x.asis_hombres);
             Map(x => x.asis_mujeres);
-            Map(x => x.idUser);
             Map(x => x.activo);
             Map(x => x.fecha_registro);
-
+            Map(x => x.idUser);
+          
             References(x => x.idTema).Column("idtema").Cascade.All();
 
-            References(x => x.unidadEncargada).Column("idunidad").Cascade.All();
+            References(x => x.idUnidad).Column("idunidad").Cascade.All();
 
 
 

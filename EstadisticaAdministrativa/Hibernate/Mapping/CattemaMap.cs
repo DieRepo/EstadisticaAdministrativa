@@ -11,7 +11,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
     {
         public CattemaMap()
         {
-            Table("cattemas");
+            Table("tblcattemas");
             Id(x => x.idtema).GeneratedBy.Identity();
             Map(x => x.nombre_tema);
             Map(x => x.activo_tema);

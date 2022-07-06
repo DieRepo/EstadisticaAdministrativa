@@ -11,7 +11,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
     class TemaDAO
     {
 
-        public static IList<Cattemas> ListAll()
+        public static IList<Cattemas> ListAllTemas()
         {
             try
             {
