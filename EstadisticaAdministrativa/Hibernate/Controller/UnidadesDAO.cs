@@ -32,5 +32,29 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
             }
 
         }
+
+        public static IList<Areas> ListAllEncargada()
+        {
+            try
+            {
+                NHibernateHelper.OpenSession();
+                return NHibernateHelper.Sesion
+                    .CreateCriteria(typeof(Areas))
+                    .List<Areas>();
+            }
+
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error al traer al lista: " + e.Message + "\n" + e.StackTrace);
+                return null;
+            }
+
+            finally
+            {
+                NHibernateHelper.CloseSesion();
+            }
+
+        }
+
     }
 }

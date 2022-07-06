@@ -34,9 +34,8 @@
     <asp:label for="tema" runat="server" class="col-sm-3 col-form-label">Tema</asp:label>
         <div class="col-sm-9">
            <asp:DropDownList ID="tema" runat="server" CssClass="form-control">
-                              <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                              <asp:ListItem Value="1"> tema1 </asp:ListItem>
-                              <asp:ListItem Value="2"> tema2 </asp:ListItem>
+                                <asp:ListItem  Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                              
                          </asp:DropDownList>
        </div>
   </div>
@@ -83,8 +82,7 @@
         <div class="col-sm-9">
            <asp:DropDownList ID="encargada" runat="server" CssClass="form-control">
                           <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                          <asp:ListItem Value="1"> area1 </asp:ListItem>
-                          <asp:ListItem Value="2"> area2 </asp:ListItem>
+                       
                       </asp:DropDownList>
         </div>
     </div>
