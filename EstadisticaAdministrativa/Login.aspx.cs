@@ -24,7 +24,7 @@ namespace EstadisticaAdministrativa
             {
 
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.AppSettings["local"]);
-                con.Open();ñ
+                con.Open();
                 str = "SELECT * FROM tblusuarios " +
                     "  where usuario=@UserName and pas=@Password and activo = 1 ";
                 com = new MySqlCommand(str, con);
