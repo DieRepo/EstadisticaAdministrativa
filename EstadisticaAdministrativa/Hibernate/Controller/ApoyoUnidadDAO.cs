@@ -11,7 +11,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
     class ApoyoUnidadDAO
     {
 
-        public static ApoyoArea Guardar(ApoyoArea o)
+        public static AreaApoyo Guardar(AreaApoyo o)
         {
 
 

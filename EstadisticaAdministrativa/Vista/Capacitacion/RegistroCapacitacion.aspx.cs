@@ -33,7 +33,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         public void MostrarCatUni()
         {
-            List<CatUnidades> lista = (List<CatUnidades>)UnidadesDAO.ListAll();
+            List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataBind();
         }

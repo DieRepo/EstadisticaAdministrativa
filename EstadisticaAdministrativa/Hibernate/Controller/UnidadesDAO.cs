@@ -10,14 +10,14 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 {
     class UnidadesDAO
     {
-        public static IList<CatUnidades> ListAll()
+        public static IList<Areas> ListAll()
         {
             try
             {
                 NHibernateHelper.OpenSession();
                 return NHibernateHelper.Sesion
-                    .CreateCriteria(typeof(CatUnidades))
-                    .List<CatUnidades>();
+                    .CreateCriteria(typeof(Areas))
+                    .List<Areas>();
             }
 
             catch (Exception e)

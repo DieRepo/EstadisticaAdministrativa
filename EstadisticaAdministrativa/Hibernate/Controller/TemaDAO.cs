@@ -11,14 +11,14 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
     class TemaDAO
     {
 
-        public static IList<Cattemas> ListAll()
+        public static IList<Temas> ListAll()
         {
             try
             {
                 NHibernateHelper.OpenSession();
                 return NHibernateHelper.Sesion
-                    .CreateCriteria(typeof(Cattemas))
-                    .List<Cattemas>();
+                    .CreateCriteria(typeof(Temas))
+                    .List<Temas>();
             }
 
             catch (Exception e)

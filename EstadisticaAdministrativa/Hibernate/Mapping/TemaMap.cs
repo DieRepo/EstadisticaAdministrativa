@@ -7,11 +7,11 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
-    class CattemaMap : ClassMap<Cattemas>
+    class TemaMap : ClassMap<Temas>
     {
-        public CattemaMap()
+        public TemaMap()
         {
-            Table("cattemas");
+            Table("tblcattemas");
             Id(x => x.idtema).GeneratedBy.Identity();
             Map(x => x.nombre_tema);
             Map(x => x.activo_tema);

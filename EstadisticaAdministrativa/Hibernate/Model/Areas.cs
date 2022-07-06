@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Model
 {
-    public class CatUnidades
+    public class Areas
     {
         public virtual int idunidad { get; set; }
         public virtual int idarea { get; set; }

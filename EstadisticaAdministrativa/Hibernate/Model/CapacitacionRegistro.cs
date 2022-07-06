@@ -18,13 +18,10 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual int idUser { get; set; }
         public virtual int activo { get; set; }
         public virtual int fecha_registro { get; set; }
+        public virtual Temas idTema { get; set; }
+        public virtual Areas unidadEncargada { get; set; }
 
-        public virtual Cattemas idTema { get; set; }
-        public virtual CatUnidades unidadEncargada { get; set; }
-
-        public virtual IList<CatUnidades> idunidad { get; set; } //area encargada
-        public virtual IList<Cattemas> idtema { get; set; }
-
+        public virtual IList<Areas> idunidad { get; set; } //area encargada
 
 
     }

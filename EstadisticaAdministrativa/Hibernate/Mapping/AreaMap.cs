@@ -7,11 +7,11 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
-    class CatUniMap : ClassMap<CatUnidades>
+    class AreaMap : ClassMap<Areas>
     {
-        public CatUniMap()
+        public AreaMap()
         {
-            Table("catunidades");
+            Table("tblcatareas");
             Id(x => x.idunidad).GeneratedBy.Identity();
             Map(x => x.idarea);
             Map(x => x.nomarea);

@@ -7,16 +7,14 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
-    class ApoyoareaMap : ClassMap<ApoyoArea>
+    class AreasApoyoMap : ClassMap<AreaApoyo>
     {
-        public ApoyoareaMap()
+        public AreasApoyoMap()
         {
             Table("tblapoyoarea");
             Id(x => x.idapoyo).GeneratedBy.Identity();
-            Map(x => x.IdCapacitacion);
-            Map(x => x.idunidad);
-
-            References(x => x.idCapacita).Column("IdCapacitacion").Cascade.All();
+            References(x => x.IdCapacitacion).Column("IdCapacitacion").Cascade.All();
+            References(x => x.idunidad).Column("idunidad").Cascade.All();
 
             /*HasMany(x => x.unidadApoyo).Inverse().AsBag().Not.LazyLoad().Cascade.All();*/
         }
