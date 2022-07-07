@@ -97,7 +97,7 @@
               </div>
 
   
-     <asp:Button ID="Button1" class="btn btn-secondary" runat="server" Text="Guardar" OnClick="Insert" />
+     <asp:Button ID="Button1" class="btn btn-secondary" runat="server" Text="Guardar" OnClick="GuardarCapacita" />
 
     </asp:Panel>
 

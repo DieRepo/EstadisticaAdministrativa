@@ -22,11 +22,18 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         protected CapacitacionRegistro Nuevover()
         {
             CapacitacionRegistro capacita = new CapacitacionRegistro();
+            capacita.nom_cap = nomcap.Text;
+            capacita.fecha_fin = Convert.ToDateTime(fec_fin.Text);
+            capacita.fecha_inicio = Convert.ToDateTime(fec_ini.Text);
+            capacita.tipoCap = Convert.ToInt32(tipo.SelectedValue);
+            capacita.asis_hombres = Convert.ToInt32(hombre.Text);
+            capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
+            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
             return capacita;
         }
 
 
-        protected void Insert(object sender, EventArgs e)
+        protected void GuardarCapacita(object sender, EventArgs e)
         {
             var guardarnuevo = Nuevover();
 
