@@ -15,6 +15,11 @@
             $('[id*=catapoyos]').multiselect({
                   includeSelectAllOption: true
                         });
+         });
+          $(function () {
+            $('[id*=CatapotoEditar]').multiselect({
+                  includeSelectAllOption: true
+                        });
         });
     </script>
 </asp:Content>
@@ -102,6 +107,127 @@
     </asp:Panel>
 
 
+
+     <!-- <asp:BoundField DataField="idtema" HeaderText="TEMA" /> -->
+    <!--  <asp:BoundField DataField="idunidad" HeaderText="UNIDAD ENCARGADA" /> -->
+
+    <!-- <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Tema </span>
+                        <asp:DropDownList ID="TemaEditar" runat="server" CssClass="form-control">
+                                <asp:ListItem  Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                       </asp:DropDownList>
+
+                </asp:Panel> -->
+
+      <!--   <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Unidad Encargada </span>
+                      <asp:DropDownList ID="CatEncargadaEditar" runat="server" CssClass="form-control">
+                          
+                      </asp:DropDownList>
+
+                         <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Unidades de Apoyo </span>
+                        <asp:ListBox ID="CatApoyoEditar" runat="server" SelectionMode="Multiple">
+                   
+                </asp:ListBox>
+
+                </asp:Panel> -->
+
+     <br /><br />
+    <asp:Panel runat="server">
+        <h3>Capacitaciones Registradas</h3>
+        <asp:GridView ID="tablaCapacitacion" runat="server" CssClass="table table-striped table-bordered" DataKeyNames="idcapacitacion"
+            AutoGenerateColumns="False" GridLines="None" EnableViewState="False" OnRowCommand="tablaCapacitacion_RowCommand"
+            EmptyDataText="No se encuentra información"
+             ShowHeaderWhenEmpty="true" OnPageIndexChanged="paginador" AllowPaging="true">
+            <Columns>
+                <asp:BoundField DataField="idcapacitacion" HeaderText="ID" />
+                <asp:BoundField DataField="nom_cap" HeaderText="NOMBRE CAPACITACION" />
+              
+                <asp:BoundField DataField="fecha_inicio" HeaderText="FECHA INICIO" />
+                <asp:BoundField DataField="fecha_fin" HeaderText="FEHCA FIN" />
+                <asp:BoundField DataField="tipoCap" HeaderText="TIPO" />
+              
+                
+
+                <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-secondary" CommandName="EditarCapacitacion" Text="Editar" />
+
+            </Columns>
+        </asp:GridView>
+    </asp:Panel>
+
+        <asp:Panel runat="server" ID="mascara" ClientIDMode="Static" Enabled="true" Visible="false">
+
+
+            <asp:Panel runat="server" CssClass="div_emergente p-4 form-group" ClientIDMode="AutoID">
+
+                <div style="width: 100%; background-color: black;">
+                    <asp:ImageButton runat="server" ImageUrl="../../Img/close.png" Style="width: 25px; height: 25px;" OnClick="ButtonCerrar_Click" CausesValidation="false" />
+                </div>
+
+                <asp:Panel runat="server" class="input-group">
+                    <span class="input-group-text">Nombre del curso </span>
+                    <asp:TextBox ID="NombreEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+                </asp:Panel>
+                
+        <br />
+        <asp:Panel runat="server" class="input-group">
+            <span class="input-group-text">Fecha Incio </span>
+
+            <asp:TextBox ID="FechaInicioEditar"  ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup"/>
+            <asp:Label runat="server" CssClass="input-group-append">
+                <asp:Label runat="server" ID="Label1" ClientIDMode="Static" CssClass="input-group-text bg-danger">
+                                <asp:Label runat="server" CssClass="text-white far fa-calendar-alt"/>
+                </asp:Label>
+            </asp:Label>
+              <br />
+       
+            <span class="input-group-text">Fecha Fin </span>
+
+            <asp:TextBox ID="FechaFinEditar"  ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup"/>
+            <asp:Label runat="server" CssClass="input-group-append">
+                <asp:Label runat="server" ID="Label2" ClientIDMode="Static" CssClass="input-group-text bg-danger">
+                                <asp:Label runat="server" CssClass="text-white far fa-calendar-alt"/>
+                </asp:Label>
+            </asp:Label>
+            
+            <axT:MaskedEditExtender ID="MaskedEditExtender1" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
+                MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
+            <axT:MaskedEditValidator ID="MaskedEditValidator1" runat="server" ControlExtender="emision_extender" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
+                EmptyValueMessage="* Fecha final no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
+            <axT:CalendarExtender runat="server" TargetControlID="FechaFinEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
+            
+        </asp:Panel>
+
+              <asp:Panel runat="server" class="input-group">
+                    <span class="input-group-text">Tipo </span>
+                      <asp:DropDownList ID="TipoEditar" runat="server" CssClass="form-control">
+
+                          <asp:ListItem Value="1"> Líneal </asp:ListItem>
+                          <asp:ListItem Value="2"> Presencial </asp:ListItem>
+                     </asp:DropDownList>
+                   
+                </asp:Panel>
+
+                 <asp:Panel runat="server" class="input-group">
+                    <span class="input-group-text">Asistencia Hombres </span>
+                    <asp:TextBox ID="HombresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+                </asp:Panel>
+                 <asp:Panel runat="server" class="input-group">
+                    <span class="input-group-text">Asistencia Mujeres </span>
+                    <asp:TextBox ID="MujeresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+                </asp:Panel>
+
+            
+
+            <asp:Button ID="ButtonEditarCap" runat="server" Text="Guardar" OnClick="ButtonEditar_Cap" class="btn btn-secondary float-right" ValidationGroup="EditarGroup" />
+            <asp:Button ID="ButtonCancelarCap" runat="server" Text="Cancelar" OnClick="ButtonCancelar_Cap" class="btn btn-secondary float-right" CausesValidation="false"/>
+
+
+        </asp:Panel>
+      </asp:Panel>
+
+    <!--</asp:Panel>-->
 
 </asp:Content>
 

@@ -19,15 +19,15 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.tipoCap);
             Map(x => x.asis_hombres);
             Map(x => x.asis_mujeres);
-            Map(x => x.idUser);
-            Map(x => x.activo);
+         //   Map(x => x.idUser);
+         //   Map(x => x.activo);
             //Map(x => x.fecha_registro);
 
-            References(x => x.idTema).Column("idtema").Cascade.All();
-            HasMany(x => x.idunidad).Inverse().AsBag().Not.LazyLoad().Cascade.All();
+//References(x => x.idTema).Column("idtema").Cascade.All();
+  //          HasMany(x => x.idunidad).Inverse().AsBag().Not.LazyLoad().Cascade.All();
 
 
-            /*References(x => x.idTema).Column("idtema").Cascade.All();
+            /* References(x => x.idTema).Column("idtema").Cascade.All();
 
             References(x => x.unidadEncargada).Column("idunidad").Cascade.All();*/
 
