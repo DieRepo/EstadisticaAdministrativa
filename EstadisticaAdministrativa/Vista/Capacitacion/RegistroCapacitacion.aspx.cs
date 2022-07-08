@@ -215,6 +215,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mascara.Visible = false;
         }
 
+        protected void tablaCapacitacion_PageIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

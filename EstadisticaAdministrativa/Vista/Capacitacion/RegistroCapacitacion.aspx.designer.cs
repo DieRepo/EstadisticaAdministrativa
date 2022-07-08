@@ -195,22 +195,22 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control MaskedEditExtender1.
+        /// Control fechaFin_extender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
+        protected global::AjaxControlToolkit.MaskedEditExtender fechaFin_extender;
 
         /// <summary>
-        /// Control MaskedEditValidator1.
+        /// Control fechaFin_validator.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditValidator MaskedEditValidator1;
+        protected global::AjaxControlToolkit.MaskedEditValidator fechaFin_validator;
 
         /// <summary>
         /// Control TipoEditar.

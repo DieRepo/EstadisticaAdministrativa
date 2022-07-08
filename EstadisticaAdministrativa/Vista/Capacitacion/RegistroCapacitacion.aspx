@@ -142,10 +142,10 @@
     <asp:Panel runat="server">
         <h3>Capacitaciones Registradas</h3>
         <asp:GridView ID="tablaCapacitacion" runat="server" CssClass="table table-striped table-bordered" DataKeyNames="idcapacitacion"
-            AutoGenerateColumns="False" GridLines="None" EnableViewState="False" OnPageIndexChanged="paginador" OnRowCommand="tablaCapacitacion_RowCommand"
+            AutoGenerateColumns="False" GridLines="None" EnableViewState="False"  OnRowCommand="tablaCapacitacion_RowCommand"
             EmptyDataText="No se encuentra información"
             ShowHeaderWhenEmpty="true"  
-             AllowPaging="true">
+             AllowPaging="true" OnPageIndexChanging="paginador">
             <Columns>
                 <asp:BoundField DataField="idcapacitacion" HeaderText="ID" />
                 <asp:BoundField DataField="nom_cap" HeaderText="NOMBRE CAPACITACION" />
@@ -153,8 +153,6 @@
                 <asp:BoundField DataField="fecha_inicio" HeaderText="FECHA INICIO" />
                 <asp:BoundField DataField="fecha_fin" HeaderText="FEHCA FIN" />
                 <asp:BoundField DataField="tipoCap" HeaderText="TIPO" />
-              
-                
 
                 <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-secondary" CommandName="EditarCapacitacion" Text="Editar" />
 
@@ -200,9 +198,9 @@
                     </asp:Label>
                 </asp:Label>
 
-                <axT:MaskedEditExtender ID="MaskedEditExtender1" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
+                <axT:MaskedEditExtender ID="fechaFin_extender" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
                     MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
-                <axT:MaskedEditValidator ID="MaskedEditValidator1" runat="server" ControlExtender="emision_extender" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
+                <axT:MaskedEditValidator ID="fechaFin_validator" runat="server" ControlExtender="fechaFin_extender" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
                     EmptyValueMessage="* Fecha final no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
                 <axT:CalendarExtender runat="server" TargetControlID="FechaFinEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
 
