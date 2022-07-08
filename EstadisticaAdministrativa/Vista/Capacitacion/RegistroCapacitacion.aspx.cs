@@ -1,5 +1,6 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Controller;
 using EstadisticaAdministrativa.Hibernate.Model;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,32 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace EstadisticaAdministrativa.Vista.Capacitacion
-{
-    public partial class RegistroCapacitacion : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            MostrarCatUni();
-            MostrarCatEncargada();
-            MostrarCatTema();
 
-        }
+{
+   public partial class RegistroCapacitacion : System.Web.UI.Page
+     {
+        MySqlCommand cmd;
+        MySqlDataReader r;
+        String sql;
+        Dictionary<string, string> d;
+        int idcapacitacionEditar;
+
+         protected void Page_Load(object sender, EventArgs e)
+         {
+             MostrarCatUni();
+             MostrarCatEncargada();
+             MostrarCatTema();
+             mostrarTabla();
+               int idEditarCap = Convert.ToInt32(ViewState["idEditarCap"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditarCap"]);
+
+                if (idEditarCap != 0)
+                {
+                    List<CapacitacionRegistro> rcap = CapacitacionDAO.ObtenCapacitacion(idEditarCap);
+                    Label val = (Label)tablaCapacitacion.FindControl("idVisitaEd_0");
+                    if (tablaCapacitacion.Rows.Count < 7)
+                    {
+                        generarTablaDinamicaCapacitacionE(rcap[0]);
+                    }
 
         protected CapacitacionRegistro Nuevover()
         {
@@ -28,42 +45,35 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             capacita.tipoCap = Convert.ToInt32(tipo.SelectedValue);
             capacita.asis_hombres = Convert.ToInt32(hombre.Text);
             capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
-            //capacita.idTema = Convert.ToInt32(tema.SelectedValue);
-            //capacita.idUnidad= Convert.ToInt32(encargada.SelectedValue);
-
-
-            List<AreaApoyo> listaArea = new List<AreaApoyo>();
-            foreach (ListItem li in catapoyos.Items)
-            {
-                if (li.Selected)
-                {
-                    AreaApoyo area = new AreaApoyo();
-                    area.idunidad = Convert.ToInt32(li.Value);
-                    area.IdCapacitacion = capacita;
-                    //.Add(area);
-                }
-                
-            }
-
-            capacita.idunidad = listaArea;
-
+            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
             return capacita;
         }
 
 
-        protected void GuardarCapacita(object sender, EventArgs e)
-        {
-            var guardarnuevo = Nuevover();
-
-            CapacitacionDAO.Guardar(guardarnuevo);
+         protected void GuardarCapacita(object sender, EventArgs e)
+         {
+             var guardarnuevo = Nuevover();
+            
+             CapacitacionDAO.Guardar(guardarnuevo);
+            limpiarCampoos();
+            mostrarTabla();
         }
 
+        public void limpiarCampoos()
+        {
+            nomcap.Text = "";
+            fec_fin.Text = "";
+            fec_ini.Text = "";
+            tipo.SelectedValue = "";
+            hombre.Text = "";
+            mujer.Text = "";
+
+        }
         public void MostrarCatUni()
         {
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataTextField = "nomarea";
-            catapoyos.DataValueField = "idUnidad";
             catapoyos.DataBind();
         }
 
@@ -72,7 +82,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Temas> lista = (List<Temas>)TemaDAO.ListAllTema();
             tema.DataSource = lista;
             tema.DataTextField = "nombre_tema";
-            tema.DataValueField = "idtema";
             tema.DataBind();
         }
 
@@ -81,7 +90,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAllEncargada();
             encargada.DataSource = lista;
             encargada.DataTextField = "nomarea";
-            encargada.DataValueField = "idUnidad";
             encargada.DataBind();
         }
     }

@@ -40,5 +40,52 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 NHibernateHelper.CloseSesion();
             }
         }
+
+        public static IList<CapacitacionRegistro> VistaTablas()
+        {
+            try
+            {
+                NHibernateHelper.OpenSession();
+                return NHibernateHelper.Sesion
+                    .CreateCriteria(typeof(CapacitacionRegistro))
+                    .List<CapacitacionRegistro>();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error al traer al lista: " + e.Message + "\n" + e.StackTrace);
+                return null;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSesion();
+            }
+
+        }
+
+        public static List<CapacitacionRegistro> ObtenCapacitacion(long? id)
+        {
+
+            List<CapacitacionRegistro> ag = new List<CapacitacionRegistro>();
+            try
+            {
+                NHibernateHelper.OpenSession();
+                return NHibernateHelper.Sesion.Query<CapacitacionRegistro>()
+                                        .Where(c => c.IdCapacitacion == id)
+                                        .ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Error al traer al consultar: " + e.Message + "\n" + e.StackTrace);
+                return null;
+            }
+            finally
+            {
+                NHibernateHelper.CloseSesion();
+            }
+
+        }
+
+       
+
     }
 }
