@@ -16,8 +16,6 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.nombre_tema);
             Map(x => x.activo_tema);
             Map(x => x.fecha_registro_tema);
-
-
         }
     }
 }

@@ -28,8 +28,9 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 
             catch (Exception e)
             {
-
+                var exceptionDes = e.ToString();
                 t.Rollback();
+                Console.WriteLine(exceptionDes);
                 Debug.WriteLine("Error al guardar: " + e.Source + "\n\n" + e.Message + "\n\n" + e.InnerException + "\n\n" + e.StackTrace);
                 return o;
             }

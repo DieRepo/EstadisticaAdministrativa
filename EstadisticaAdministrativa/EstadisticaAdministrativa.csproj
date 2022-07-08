@@ -125,13 +125,25 @@
     <Content Include="Vista\Justicia\RegistroJusticia.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hibernate\Controller\ApoyoUnidadDAO.cs" />
+    <Compile Include="Hibernate\Controller\CapacitacionDAO.cs" />
     <Compile Include="Hibernate\Controller\JusticiaVisitaDAO.cs" />
+    <Compile Include="Hibernate\Controller\TemaDAO.cs" />
+    <Compile Include="Hibernate\Controller\UnidadesDAO.cs" />
+    <Compile Include="Hibernate\Mapping\AreaMap.cs" />
+    <Compile Include="Hibernate\Mapping\AreasApoyoMap.cs" />
+    <Compile Include="Hibernate\Mapping\CapacitacionMap.cs" />
     <Compile Include="Hibernate\Mapping\JusticiaBotargasMap.cs" />
     <Compile Include="Hibernate\Mapping\JusticiaMap.cs" />
     <Compile Include="Hibernate\Mapping\JusticiaRegistroMap.cs" />
+    <Compile Include="Hibernate\Mapping\TemaMap.cs" />
+    <Compile Include="Hibernate\Model\AreaApoyo.cs" />
+    <Compile Include="Hibernate\Model\Areas.cs" />
+    <Compile Include="Hibernate\Model\CapacitacionRegistro.cs" />
     <Compile Include="Hibernate\Model\JusticiaBotarga.cs" />
     <Compile Include="Hibernate\Model\JusticiaRegistro.cs" />
     <Compile Include="Hibernate\Model\JusticiaVisita.cs" />
+    <Compile Include="Hibernate\Model\Temas.cs" />
     <Compile Include="Hibernate\NHibernateHelper.cs" />
     <Compile Include="Error\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -158,6 +170,11 @@
     <Compile Include="Modelo\JusticiaModel.cs" />
     <Compile Include="Modelo\ReporteVisita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Capacitacion\RegistroCapacitacion.aspx.cs">
       <DependentUpon>RegistroCapacitacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -211,6 +228,10 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Vista\Site.Master" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -218,7 +239,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

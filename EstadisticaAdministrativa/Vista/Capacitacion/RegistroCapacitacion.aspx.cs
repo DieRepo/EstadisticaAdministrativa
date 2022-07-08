@@ -28,7 +28,25 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             capacita.tipoCap = Convert.ToInt32(tipo.SelectedValue);
             capacita.asis_hombres = Convert.ToInt32(hombre.Text);
             capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
-            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
+            //capacita.idTema = Convert.ToInt32(tema.SelectedValue);
+            //capacita.idUnidad= Convert.ToInt32(encargada.SelectedValue);
+
+
+            List<AreaApoyo> listaArea = new List<AreaApoyo>();
+            foreach (ListItem li in catapoyos.Items)
+            {
+                if (li.Selected)
+                {
+                    AreaApoyo area = new AreaApoyo();
+                    area.idunidad = Convert.ToInt32(li.Value);
+                    area.IdCapacitacion = capacita;
+                    //.Add(area);
+                }
+                
+            }
+
+            capacita.idunidad = listaArea;
+
             return capacita;
         }
 
@@ -45,6 +63,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataTextField = "nomarea";
+            catapoyos.DataValueField = "idUnidad";
             catapoyos.DataBind();
         }
 
@@ -53,6 +72,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Temas> lista = (List<Temas>)TemaDAO.ListAllTema();
             tema.DataSource = lista;
             tema.DataTextField = "nombre_tema";
+            tema.DataValueField = "idtema";
             tema.DataBind();
         }
 
@@ -61,6 +81,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAllEncargada();
             encargada.DataSource = lista;
             encargada.DataTextField = "nomarea";
+            encargada.DataValueField = "idUnidad";
             encargada.DataBind();
         }
     }

@@ -13,5 +13,7 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual int activo_tema { get; set; }
         public virtual DateTime fecha_registro_tema { get; set; }
 
+        public virtual CapacitacionRegistro capacitaciones { get; set; }
+
     }
 }
