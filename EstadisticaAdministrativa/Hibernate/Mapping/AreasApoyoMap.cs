@@ -14,7 +14,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Table("tblapoyoarea");
             Id(x => x.idapoyo).GeneratedBy.Identity();
             References(x => x.IdCapacitacion).Column("IdCapacitacion").Cascade.All();
-            References(x => x.idunidad).Column("idunidad").Cascade.All();
+//References(x => x.idunidad).Column("idunidad").Cascade.All();
 
             /*HasMany(x => x.unidadApoyo).Inverse().AsBag().Not.LazyLoad().Cascade.All();*/
         }

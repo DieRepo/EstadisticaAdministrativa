@@ -10,7 +10,7 @@ namespace EstadisticaAdministrativa.Hibernate.Model
     {
         public virtual int idapoyo { get; set; }
         public virtual CapacitacionRegistro IdCapacitacion { get; set; }
-        public virtual int idunidad { get; set; }
+        public virtual Areas idunidad { get; set; }
 
     }
 }

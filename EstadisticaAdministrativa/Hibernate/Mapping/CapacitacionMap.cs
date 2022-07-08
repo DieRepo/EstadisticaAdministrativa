@@ -29,8 +29,8 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             //References<Temas>(x => x.idTema).Column("idTema").ForeignKey("idtema");
 
 
-            References(x => x.idTema).Column("idtema").Cascade.All();
-            HasMany(x => x.idunidad).Inverse().AsBag().Not.LazyLoad().Cascade.All();
+            //References(x => x.idTema).Column("idtema").Cascade.All();
+            //HasMany(x => x.idunidad).Inverse().AsBag().Not.LazyLoad().Cascade.All();
 
 
             /* References(x => x.idTema).Column("idtema").Cascade.All();

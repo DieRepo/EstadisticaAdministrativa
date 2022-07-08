@@ -551,5 +551,7 @@ namespace EstadisticaAdministrativa.Vista.Justicia
         {
             mascara.Visible = false;
         }
+
+
     }
 }

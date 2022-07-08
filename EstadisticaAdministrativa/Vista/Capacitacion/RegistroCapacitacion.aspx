@@ -24,85 +24,85 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-     <asp:Panel runat="server" CssClass="Contenido">
+    
+    
+    <asp:Panel runat="server" CssClass="Contenido">
         <h1>Capacitaciones</h1>
         <hr />
         <br />
 
-    <div class="form-group row">
-       <asp:label for="nom_cap" runat="server" class="col-sm-3 col-form-label">Nombre de la capacitación</asp:label>
-        <div class="col-sm-9">
-          <asp:TextBox ID="nomcap" runat="server" class="form-control"></asp:TextBox>
-        </div>
-    </div>
-  <div class="form-group row">
-    <asp:label for="tema" runat="server" class="col-sm-3 col-form-label">Tema</asp:label>
-        <div class="col-sm-9">
-           <asp:DropDownList ID="tema" runat="server" CssClass="form-control">
-                                <asp:ListItem  Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                              
-                         </asp:DropDownList>
-       </div>
-  </div>
-  <div class="form-group row">
-    <asp:label for="fecini" runat="server" class="col-sm-3 col-form-label">Fecha Inicio</asp:label>
-   <div class="col-sm-9">
-       <asp:TextBox ID="fec_ini"  type="date" ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy"  CssClass="form-control form-control-sm"></asp:TextBox>
-      </div>     
-            
-  
-    <asp:label for="fecfin" runat="server" class="col-sm-3 col-form-label">Fecha fin</asp:label>
-    <div class="col-sm-9">
-       <asp:TextBox ID="fec_fin" type="date"  ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy"  CssClass="form-control form-control-sm"></asp:TextBox>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="tipolp" runat="server" class="col-sm-3 col-form-label">Tipo</label>
-    <div class="col-sm-9">
-        <asp:DropDownList ID="tipo" runat="server" CssClass="form-control">
-                          <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                          <asp:ListItem Value="1"> Líneal </asp:ListItem>
-                          <asp:ListItem Value="2"> Presencial </asp:ListItem>
-                     </asp:DropDownList>
-    </div>
-  </div>
-    <div class="form-group row">
-
-        <asp:label for="asis" runat="server" class="col-sm-3 col-form-label">Asistentes</asp:label>
-       
-           <div  runat="server" class="col-md-4">
-                        <asp:Label runat="server">Hombres</asp:Label> 
-                        <asp:TextBox ID="hombre" runat="server"  CssClass="form-control"></asp:TextBox>
-                    </div>
-           
-                   <div runat="server" class="col-md-4">
-                        <asp:Label runat="server">Mujeres </asp:Label> 
-                        <asp:TextBox ID="mujer" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-        </div>
-   
-       <div class="form-group row">
-
-        <asp:label for="area" runat="server" class="col-sm-3 col-form-label">Area Encargada</asp:label>
-        <div class="col-sm-9">
-           <asp:DropDownList ID="encargada" runat="server" CssClass="form-control">
-                          <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                       
-                      </asp:DropDownList>
-        </div>
-    </div>
-          <div class=" form-group row">
-
-            <asp:label for="apoyo" runat="server" class="col-sm-3 col-form-label">Area de Apoyo</asp:label>
+        <div class="form-group row">
+            <asp:Label for="nom_cap" runat="server" class="col-sm-3 col-form-label">Nombre de la capacitación</asp:Label>
             <div class="col-sm-9">
-                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px">
-                   
-                </asp:ListBox>
+                <asp:TextBox ID="nomcap" runat="server" class="form-control"></asp:TextBox>
             </div>
-              </div>
+        </div>
+        <div class="form-group row">
+            <asp:Label for="tema" runat="server" class="col-sm-3 col-form-label">Tema</asp:Label>
+            <div class="col-sm-9">
+                <asp:DropDownList ID="tema" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
 
-  
-     <asp:Button ID="Button1" class="btn btn-secondary" runat="server" Text="Guardar" OnClick="GuardarCapacita" />
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group row">
+            <asp:Label for="fecini" runat="server" class="col-sm-3 col-form-label">Fecha Inicio</asp:Label>
+            <div class="col-sm-9">
+                <asp:TextBox ID="fec_ini" type="date" ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy" CssClass="form-control form-control-sm"></asp:TextBox>
+            </div>
+
+
+            <asp:Label for="fecfin" runat="server" class="col-sm-3 col-form-label">Fecha fin</asp:Label>
+            <div class="col-sm-9">
+                <asp:TextBox ID="fec_fin" type="date" ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy" CssClass="form-control form-control-sm"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="tipolp" runat="server" class="col-sm-3 col-form-label">Tipo</label>
+            <div class="col-sm-9">
+                <asp:DropDownList ID="tipo" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                    <asp:ListItem Value="1"> Líneal </asp:ListItem>
+                    <asp:ListItem Value="2"> Presencial </asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <asp:Label for="asis" runat="server" class="col-sm-3 col-form-label">Asistentes</asp:Label>
+
+            <div runat="server" class="col-md-4">
+                <asp:Label runat="server">Hombres</asp:Label>
+                <asp:TextBox ID="hombre" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div runat="server" class="col-md-4">
+                <asp:Label runat="server">Mujeres </asp:Label>
+                <asp:TextBox ID="mujer" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="form-group row">
+
+            <asp:Label for="area" runat="server" class="col-sm-3 col-form-label">Area Encargada</asp:Label>
+            <div class="col-sm-9">
+                <asp:DropDownList ID="encargada" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class=" form-group row">
+
+            <asp:Label for="apoyo" runat="server" class="col-sm-3 col-form-label">Area de Apoyo</asp:Label>
+            <div class="col-sm-9">
+                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px"></asp:ListBox>
+            </div>
+        </div>
+
+
+        <asp:Button ID="Button1" class="btn btn-secondary" runat="server" Text="Guardar" OnClick="GuardarCapacita" />
 
     </asp:Panel>
 
@@ -134,12 +134,18 @@
                 </asp:Panel> -->
 
      <br /><br />
+
+
+
+
+
     <asp:Panel runat="server">
         <h3>Capacitaciones Registradas</h3>
         <asp:GridView ID="tablaCapacitacion" runat="server" CssClass="table table-striped table-bordered" DataKeyNames="idcapacitacion"
-            AutoGenerateColumns="False" GridLines="None" EnableViewState="False" OnRowCommand="tablaCapacitacion_RowCommand"
+            AutoGenerateColumns="False" GridLines="None" EnableViewState="False" OnPageIndexChanged="paginador" OnRowCommand="tablaCapacitacion_RowCommand"
             EmptyDataText="No se encuentra información"
-             ShowHeaderWhenEmpty="true" OnPageIndexChanged="paginador" AllowPaging="true">
+            ShowHeaderWhenEmpty="true"  
+             AllowPaging="true">
             <Columns>
                 <asp:BoundField DataField="idcapacitacion" HeaderText="ID" />
                 <asp:BoundField DataField="nom_cap" HeaderText="NOMBRE CAPACITACION" />
@@ -156,76 +162,76 @@
         </asp:GridView>
     </asp:Panel>
 
-        <asp:Panel runat="server" ID="mascara" ClientIDMode="Static" Enabled="true" Visible="false">
+    
+    
+    
+    
+    <asp:Panel runat="server" ID="mascara" ClientIDMode="Static" Enabled="true" Visible="false">
 
+        <asp:Panel runat="server" CssClass="div_emergente p-4 form-group" ClientIDMode="AutoID">
 
-            <asp:Panel runat="server" CssClass="div_emergente p-4 form-group" ClientIDMode="AutoID">
+            <div style="width: 100%; background-color: black;">
+                <asp:ImageButton runat="server" ImageUrl="../../Img/close.png" Style="width: 25px; height: 25px;" OnClick="ButtonCerrar_Click" CausesValidation="false" />
+            </div>
 
-                <div style="width: 100%; background-color: black;">
-                    <asp:ImageButton runat="server" ImageUrl="../../Img/close.png" Style="width: 25px; height: 25px;" OnClick="ButtonCerrar_Click" CausesValidation="false" />
-                </div>
+            <asp:Panel runat="server" class="input-group">
+                <span class="input-group-text">Nombre del curso </span>
+                <asp:TextBox ID="NombreEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+            </asp:Panel>
 
-                <asp:Panel runat="server" class="input-group">
-                    <span class="input-group-text">Nombre del curso </span>
-                    <asp:TextBox ID="NombreEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
-                </asp:Panel>
-                
-        <br />
-        <asp:Panel runat="server" class="input-group">
-            <span class="input-group-text">Fecha Incio </span>
+            <br />
+            <asp:Panel runat="server" class="input-group">
+                <span class="input-group-text">Fecha Incio </span>
 
-            <asp:TextBox ID="FechaInicioEditar"  ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup"/>
-            <asp:Label runat="server" CssClass="input-group-append">
-                <asp:Label runat="server" ID="Label1" ClientIDMode="Static" CssClass="input-group-text bg-danger">
+                <asp:TextBox ID="FechaInicioEditar" ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup" />
+                <asp:Label runat="server" CssClass="input-group-append">
+                    <asp:Label runat="server" ID="Label1" ClientIDMode="Static" CssClass="input-group-text bg-danger">
                                 <asp:Label runat="server" CssClass="text-white far fa-calendar-alt"/>
+                    </asp:Label>
                 </asp:Label>
-            </asp:Label>
-              <br />
-       
-            <span class="input-group-text">Fecha Fin </span>
+                <br />
 
-            <asp:TextBox ID="FechaFinEditar"  ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup"/>
-            <asp:Label runat="server" CssClass="input-group-append">
-                <asp:Label runat="server" ID="Label2" ClientIDMode="Static" CssClass="input-group-text bg-danger">
+                <span class="input-group-text">Fecha Fin </span>
+
+                <asp:TextBox ID="FechaFinEditar" ClientIDMode="Static" runat="server" placeholder="dd/MM/yyyy hh:mm:ss" CssClass="form-control form-control-sm" ValidationGroup="EditarGroup" />
+                <asp:Label runat="server" CssClass="input-group-append">
+                    <asp:Label runat="server" ID="Label2" ClientIDMode="Static" CssClass="input-group-text bg-danger">
                                 <asp:Label runat="server" CssClass="text-white far fa-calendar-alt"/>
+                    </asp:Label>
                 </asp:Label>
-            </asp:Label>
-            
-            <axT:MaskedEditExtender ID="MaskedEditExtender1" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
-                MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
-            <axT:MaskedEditValidator ID="MaskedEditValidator1" runat="server" ControlExtender="emision_extender" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
-                EmptyValueMessage="* Fecha final no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
-            <axT:CalendarExtender runat="server" TargetControlID="FechaFinEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
-            
-        </asp:Panel>
 
-              <asp:Panel runat="server" class="input-group">
-                    <span class="input-group-text">Tipo </span>
-                      <asp:DropDownList ID="TipoEditar" runat="server" CssClass="form-control">
+                <axT:MaskedEditExtender ID="MaskedEditExtender1" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
+                    MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
+                <axT:MaskedEditValidator ID="MaskedEditValidator1" runat="server" ControlExtender="emision_extender" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
+                    EmptyValueMessage="* Fecha final no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
+                <axT:CalendarExtender runat="server" TargetControlID="FechaFinEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
 
-                          <asp:ListItem Value="1"> Líneal </asp:ListItem>
-                          <asp:ListItem Value="2"> Presencial </asp:ListItem>
-                     </asp:DropDownList>
-                   
-                </asp:Panel>
+            </asp:Panel>
 
-                 <asp:Panel runat="server" class="input-group">
-                    <span class="input-group-text">Asistencia Hombres </span>
-                    <asp:TextBox ID="HombresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
-                </asp:Panel>
-                 <asp:Panel runat="server" class="input-group">
-                    <span class="input-group-text">Asistencia Mujeres </span>
-                    <asp:TextBox ID="MujeresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
-                </asp:Panel>
+            <asp:Panel runat="server" class="input-group">
+                <span class="input-group-text">Tipo </span>
+                <asp:DropDownList ID="TipoEditar" runat="server" CssClass="form-control">
 
-            
+                    <asp:ListItem Value="1"> Líneal </asp:ListItem> 
+                    <asp:ListItem Value="2"> Presencial </asp:ListItem>
+                </asp:DropDownList>
+
+            </asp:Panel>
+
+            <asp:Panel runat="server" class="input-group">
+                <span class="input-group-text">Asistencia Hombres </span>
+                <asp:TextBox ID="HombresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+            </asp:Panel>
+            <asp:Panel runat="server" class="input-group">
+                <span class="input-group-text">Asistencia Mujeres </span>
+                <asp:TextBox ID="MujeresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
+            </asp:Panel>
 
             <asp:Button ID="ButtonEditarCap" runat="server" Text="Guardar" OnClick="ButtonEditar_Cap" class="btn btn-secondary float-right" ValidationGroup="EditarGroup" />
-            <asp:Button ID="ButtonCancelarCap" runat="server" Text="Cancelar" OnClick="ButtonCancelar_Cap" class="btn btn-secondary float-right" CausesValidation="false"/>
-
+            <asp:Button ID="ButtonCancelarCap" runat="server" Text="Cancelar" OnClick="ButtonCancelar_Cap" class="btn btn-secondary float-right" CausesValidation="false" />
 
         </asp:Panel>
-      </asp:Panel>
+    </asp:Panel>
 
     <!--</asp:Panel>-->
 
