@@ -17,7 +17,7 @@
              });
          });
          $(function () {
-             $('[id*=CatapotoEditar]').multiselect({
+             $('[id*=CatApoyoEditar]').multiselect({
                  includeSelectAllOption: true
              });
          });
@@ -119,7 +119,7 @@
             <asp:Label for="apoyo" runat="server" class="col-sm-3 col-form-label">Area de Apoyo</asp:Label>
             <div class="col-sm-9">
                 <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px">
-                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                    <asp:ListItem Value="-1" Selected="True"> Selecciona una opción </asp:ListItem>
                 </asp:ListBox>
             </div>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="catapoyos" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"

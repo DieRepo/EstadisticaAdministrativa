@@ -163,7 +163,22 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
                 TemaEditar.SelectedValue = capacitaciones.idtema.idtema.ToString();
                 CatEncargadaEditar.SelectedValue = capacitaciones.idunidad.idunidad.ToString();
-               
+
+                TemaEditar.SelectedValue = capacitaciones.idtema.idtema.ToString();
+                CatEncargadaEditar.SelectedValue = capacitaciones.idunidad.idunidad.ToString();
+
+                foreach (ListItem li in CatApoyoEditar.Items)
+                {
+                    foreach (AreaApoyo area in capacitaciones.idUnidades)
+                    {
+                        if (li.Value.Equals(area.idunidad.idunidad.ToString()))
+                        {
+                            li.Selected = true;
+                        }
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {
