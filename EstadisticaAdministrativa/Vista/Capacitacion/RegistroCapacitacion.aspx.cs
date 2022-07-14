@@ -137,6 +137,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         protected void EditarTablaCapacitacion(CapacitacionRegistro capacitaciones)
         {
+            MostrarCatEncargadaEditar();
+            MostrarCatTemaEditar();
+            MostrarCatUniEditar();
             try
             {
                 d = (Dictionary<String, String>)Session["usuario"];
@@ -158,12 +161,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 capacitaciones.idUser = idUsuario;
 
 
-
-
-
-                TemaEditar..SelectedValue = capacitaciones.idtema.ToString();
-                CatEncargadaEditar.SelectedValue = capacitaciones.idunidad.ToString();
-                CatApoyoEditar.SelectedValue = capacitaciones.idunidad.ToString();
+                TemaEditar.SelectedValue = capacitaciones.idtema.idtema.ToString();
+                CatEncargadaEditar.SelectedValue = capacitaciones.idunidad.idunidad.ToString();
+               
             }
             catch (Exception ex)
             {
@@ -233,6 +233,47 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         }
 
 
+        public void MostrarCatUniEditar()
+        {
+            List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
+            CatApoyoEditar.DataSource = lista;
+            CatApoyoEditar.DataTextField = "nomarea";
+            CatApoyoEditar.DataValueField = "idUnidad";
+            CatApoyoEditar.DataBind();
+            mapAreas = new Dictionary<int, Areas>();
+            foreach (Areas area in lista)
+            {
+                mapAreas.Add(area.idunidad, area);
+            }
+            ViewState["Areas"] = mapAreas;
+        }
+
+        public void MostrarCatTemaEditar()
+        {
+            List<Temas> lista = (List<Temas>)TemaDAO.ListAllTema();
+            TemaEditar.DataSource = lista;
+            TemaEditar.DataTextField = "nombre_tema";
+            TemaEditar.DataValueField = "idtema";
+            TemaEditar.DataBind();
+            mapTemas = new Dictionary<int, Temas>();
+            foreach (Temas tema in lista)
+            {
+                mapTemas.Add(tema.idtema, tema);
+            }
+            ViewState["Temas"] = mapTemas;
+        }
+
+
+        public void MostrarCatEncargadaEditar()
+        {
+            List<Areas> lista = (List<Areas>)UnidadesDAO.ListAllEncargada();
+            CatEncargadaEditar.DataSource = lista;
+            CatEncargadaEditar.DataTextField = "nomarea";
+            CatEncargadaEditar.DataValueField = "idunidad";
+            CatEncargadaEditar.DataBind();
+        }
+
+
         public void mostrarTabla()
         {
             List<CapacitacionRegistro> lista = (List<CapacitacionRegistro>)CapacitacionDAO.VistaTablas();
@@ -282,6 +323,10 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         /*btn EDITAR capacitacion*/
         protected void ButtonEditar_Cap(object sender, EventArgs e)
         {
+            MostrarCatEncargadaEditar();
+            MostrarCatTemaEditar();
+            MostrarCatUniEditar();
+
             try
             {
                 int idEditar = Convert.ToInt32(ViewState["idEditar"]);
