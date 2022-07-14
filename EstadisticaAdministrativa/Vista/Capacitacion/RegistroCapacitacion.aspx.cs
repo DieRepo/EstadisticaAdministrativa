@@ -13,9 +13,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 {
     public partial class RegistroCapacitacion : System.Web.UI.Page
     {
-        MySqlCommand cmd;
-        MySqlDataReader r;
-        String sql;
+      
         Dictionary<string, string> d;
         int idcapacitacionEditar;
 
@@ -25,18 +23,19 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             MostrarCatEncargada();
             MostrarCatTema();
             mostrarTabla();
-            int idEditarCap = Convert.ToInt32(ViewState["idEditarCap"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditarCap"]);
+            int idEditar = Convert.ToInt32(ViewState["idEditar"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditar"]);
 
-            if (idEditarCap != 0)
+            if (idEditar != 0)
             {
-                List<CapacitacionRegistro> rcap = CapacitacionDAO.ObtenCapacitacion(idEditarCap);
+                List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
                 Label val = (Label)tablaCapacitacion.FindControl("idVisitaEd_0");
-                if (tablaCapacitacion.Rows.Count < 7)
+                if (tablaCapacitacion.Rows.Count < 3)
                 {
-                    generarTablaDinamicaCapacitacionE(rcap[0]);
+                    EditarTablaCapacitacion(jvi[0]);
                 }
 
             }
+
         }
 
 
@@ -52,6 +51,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             capacita.tipoCap = Convert.ToInt32(tipo.SelectedValue);
             capacita.asis_hombres = Convert.ToInt32(hombre.Text);
             capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
+            capacita.activo = 1;
             capacita.idUser = idUsuario;
             //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
 
@@ -72,6 +72,27 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             return capacita;
         }
 
+        protected CapacitacionRegistro ModificarCapacitacion()
+        {
+            d = (Dictionary<String, String>)Session["usuario"];
+            int idUsuario = Convert.ToInt32(d["idUsuario"]);
+            CapacitacionRegistro mod = new CapacitacionRegistro();
+            mod.IdCapacitacion = Convert.ToInt32( ideditar.Text);
+            mod.nom_cap = NombreEditar.Text;
+            mod.fecha_inicio = Convert.ToDateTime(FechaInicioEditar.Text);
+            mod.fecha_fin = Convert.ToDateTime(FechaFinEditar.Text);
+            mod.tipoCap= Convert.ToInt32(TipoEditar.SelectedValue);
+            mod.asis_hombres=Convert.ToInt32(HombresEditar.Text);
+            mod.asis_mujeres= Convert.ToInt32(MujeresEditar.Text);
+            mod.idUser = idUsuario;
+            mod.activo = 1;
+            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
+
+            //List<AreaApoyo> listaArea = new List<AreaApoyo>();
+            return mod;
+           
+        }
+
 
         protected void GuardarCapacita(object sender, EventArgs e)
         {
@@ -81,7 +102,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             limpiarCampoos();
             mostrarTabla();
         }
-
+                          
         public void limpiarCampoos()
         {
             nomcap.Text = "";
@@ -128,19 +149,24 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         protected void tablaCapacitacion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            ViewState["idEditarCap"] = 0;
+           ViewState["idEditar"] = 0;
+           
+
             try
             {
                 idcapacitacionEditar = (int)tablaCapacitacion.DataKeys[Convert.ToInt32(e.CommandArgument)].Value;
-                ViewState["idEditarCap"] = idcapacitacionEditar;
+                ViewState["idEditar"] = idcapacitacionEditar;
+
                 IList<CapacitacionRegistro> result = CapacitacionDAO.ObtenCapacitacion(idcapacitacionEditar);
+              
                 if (e.CommandName.Equals("EditarCapacitacion"))
                 {
                     if (result[0] != null)
                     {
-                        generarTablaDinamicaCapacitacionE(result[0]);
+                        EditarTablaCapacitacion(result[0]);
                     }
                     mascara.Visible = true;
+                   
                 }
             }
             catch (Exception ex)
@@ -150,23 +176,25 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         }
 
-        protected void generarTablaDinamicaCapacitacionE(CapacitacionRegistro capacitaciones)
+        protected void EditarTablaCapacitacion(CapacitacionRegistro capacitaciones)
         {
             try
             {
                 d = (Dictionary<String, String>)Session["usuario"];
                 int idUsuario = Convert.ToInt32(d["idUsuario"]);
 
+                ideditar.Text =  capacitaciones.IdCapacitacion.ToString();
                 NombreEditar.Text = capacitaciones.nom_cap;
                 // TemaEditar. = capacitaciones.idTema;
                 FechaInicioEditar.Text = capacitaciones.fecha_inicio.ToString();
                 FechaFinEditar.Text = capacitaciones.fecha_fin.ToString();
-                //TipoEditar.Text = capacitaciones.tipoCap;
+                TipoEditar.SelectedValue = capacitaciones.tipoCap.ToString();
+                          
                 HombresEditar.Text = capacitaciones.asis_hombres.ToString();
                 MujeresEditar.Text = capacitaciones.asis_mujeres.ToString();
                 // CatEncargadaEditar = capacitaciones.idunidad;
                 // CatapotoEditar.Text = capacitaciones.idunidad;
-
+                capacitaciones.idUser = idUsuario;
             }
             catch (Exception ex)
             {
@@ -175,6 +203,24 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         }
 
+      /*  protected void EliminarCapacitacion()
+        {
+
+            d = (Dictionary<String, String>)Session["usuario"];
+            int idUsuario = Convert.ToInt32(d["idUsuario"]);
+
+            CapacitacionRegistro elicap = new CapacitacionRegistro();
+            elicap.IdCapacitacion = Convert.ToInt32(ideditar.Text);
+            elicap.idUser = idUsuario;
+            elicap.activo = 0;
+            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
+
+            //List<AreaApoyo> listaArea = new List<AreaApoyo>();
+           // return elicap;
+
+
+        }*/
+
 
         protected void paginador(object sender, GridViewPageEventArgs e)
         {
@@ -182,15 +228,19 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mostrarTabla();
         }
 
-        /*btn EDITAR capacitacion*/
+
+         /*btn EDITAR capacitacion*/
         protected void ButtonEditar_Cap(object sender, EventArgs e)
         {
             try
             {
-                int idEditarCap = Convert.ToInt32(ViewState["idEditarCap"]);
-                List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditarCap);
+                int idEditar = Convert.ToInt32(ViewState["idEditar"]);
+                List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
 
-                /* CapacitacionDAO.Guardar();*/
+
+                var guardarnuevo = ModificarCapacitacion();
+
+                CapacitacionDAO.Guardar(guardarnuevo);
                 mascara.Visible = false;
                 mostrarTabla();
             }
@@ -200,7 +250,37 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             }
 
             Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);
+
+            
+              
         }
+
+                     
+       /* protected void Button_Eliminar_Cap(object sender, EventArgs e){
+
+            try
+            {
+                int idEditar = Convert.ToInt32(ViewState["idEditar"]);
+                List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
+
+
+                var eliminarcap = EliminarCapacitacion();
+
+                CapacitacionDAO.EliminarCapacitacion(eliminarcap);
+                mascara.Visible = false;
+                mostrarTabla();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
+
+            Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);
+
+        }*/
+
+
+
 
         /*btn Cancelar*/
         protected void ButtonCancelar_Cap(object sender, EventArgs e)

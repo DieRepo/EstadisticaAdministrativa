@@ -72,6 +72,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 return NHibernateHelper.Sesion.Query<CapacitacionRegistro>()
                                         .Where(c => c.IdCapacitacion == id)
                                         .ToList();
+                
             }
             catch (Exception e)
             {
@@ -85,7 +86,42 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
 
         }
 
-       
+      /*  public static CapacitacionRegistro EliminarCapacitacion(CapacitacionRegistro o)
+        {
+
+            NHibernateHelper.OpenSession();
+
+
+            var t = NHibernateHelper.Sesion.BeginTransaction();
+            try
+            {
+                NHibernateHelper.Sesion.Query<CapacitacionRegistro>()
+                                       .Where(c => c.IdCapacitacion == id)
+                                       .ToList();
+
+
+                NHibernateHelper.Sesion.Update(o);
+                t.Commit();
+
+                return o;
+            }
+
+            catch (Exception e)
+            {
+                var exceptionDes = e.ToString();
+                t.Rollback();
+                Console.WriteLine(exceptionDes);
+                Debug.WriteLine("Error al guardar: " + e.Source + "\n\n" + e.Message + "\n\n" + e.InnerException + "\n\n" + e.StackTrace);
+                return o;
+            }
+
+            finally
+            {
+                NHibernateHelper.CloseSesion();
+            }
+
+        }*/
+
 
     }
 }

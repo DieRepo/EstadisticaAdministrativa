@@ -14,6 +14,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Table("tblcapacitacion");
             Id(x => x.IdCapacitacion).GeneratedBy.Identity();
             Map(x => x.nom_cap);
+          //  Map(x => x.fecha_inicio);
             Map(x => x.fecha_inicio);
             Map(x => x.fecha_fin);
             Map(x => x.tipoCap);

@@ -10,8 +10,9 @@ namespace EstadisticaAdministrativa.Hibernate.Model
     {
         public virtual int IdCapacitacion { get; set; }
         public virtual string nom_cap { get; set; }
-        public virtual DateTime fecha_inicio { get; set; }
-        public virtual DateTime fecha_fin { get; set; }
+         
+        public virtual DateTime?  fecha_inicio { get; set; }
+        public virtual DateTime?  fecha_fin { get; set; }
         public virtual int tipoCap { get; set; }
         public virtual int asis_hombres { get; set; }
         public virtual int asis_mujeres { get; set; }
