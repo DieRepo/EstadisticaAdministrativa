@@ -16,13 +16,22 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
       
         Dictionary<string, string> d;
         int idcapacitacionEditar;
+        Dictionary<int, Areas> mapAreas;
+        Dictionary<int, Temas> mapTemas;
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            MostrarCatUni();
-            MostrarCatEncargada();
-            MostrarCatTema();
-            mostrarTabla();
+            if (!IsPostBack)
+            {
+                MostrarCatUni();
+                MostrarCatEncargada();
+                MostrarCatTema();
+                mostrarTabla();
+
+            }
+
             int idEditar = Convert.ToInt32(ViewState["idEditar"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditar"]);
 
             if (idEditar != 0)
@@ -43,6 +52,8 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         {
             d = (Dictionary<String, String>)Session["usuario"];
             int idUsuario = Convert.ToInt32(d["idUsuario"]);
+            mapAreas = (Dictionary<int, Areas>)ViewState["Areas"];
+            mapTemas = (Dictionary<int, Temas>)ViewState["Temas"];
 
             CapacitacionRegistro capacita = new CapacitacionRegistro();
             capacita.nom_cap = nomcap.Text;
@@ -53,23 +64,32 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
             capacita.activo = 1;
             capacita.idUser = idUsuario;
-            //capacita.idunidad = Convert.ToInt32(encargada.SelectedValue);
+
+            int idtema = Convert.ToInt32(tema.SelectedValue);
+            capacita.idtema = mapTemas[idtema];
+
+            int unidadEncargada = Convert.ToInt32(encargada.SelectedValue);
+            capacita.idunidad = mapAreas[unidadEncargada];
 
             List<AreaApoyo> listaArea = new List<AreaApoyo>();
-            foreach (ListItem li in catapoyos.Items)
-            {
-                if (li.Selected)
-                {
-                    AreaApoyo area = new AreaApoyo();
-                    //area.idunidad = Convert.ToInt32(li.Value);
-                    area.IdCapacitacion = capacita;
-                    //.Add(area);
-                }
 
+            foreach (ListItem l in catapoyos.Items)
+            {
+                if (l.Selected)
+                {
+                    int valor = Convert.ToInt32(l.Value);
+                    Areas area = mapAreas[valor];
+                    AreaApoyo apoyo = new AreaApoyo();
+                    apoyo.idunidad = area;
+                    apoyo.IdCapacitacion = capacita;
+
+                    listaArea.Add(apoyo);
+                }
             }
 
-            capacita.idunidad = listaArea;
+            capacita.idUnidades = listaArea;
             return capacita;
+
         }
 
         protected CapacitacionRegistro ModificarCapacitacion()
@@ -118,7 +138,15 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
             catapoyos.DataSource = lista;
             catapoyos.DataTextField = "nomarea";
+            catapoyos.DataValueField = "idUnidad";
             catapoyos.DataBind();
+            mapAreas = new Dictionary<int, Areas>();
+            foreach (Areas area in lista)
+            {
+                mapAreas.Add(area.idunidad, area);
+            }
+            ViewState["Areas"] = mapAreas;
+
         }
 
         public void MostrarCatTema()
@@ -126,7 +154,14 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Temas> lista = (List<Temas>)TemaDAO.ListAllTema();
             tema.DataSource = lista;
             tema.DataTextField = "nombre_tema";
+            tema.DataValueField = "idtema";
             tema.DataBind();
+            mapTemas = new Dictionary<int, Temas>();
+            foreach (Temas tema in lista)
+            {
+                mapTemas.Add(tema.idtema, tema);
+            }
+            ViewState["Temas"] = mapTemas;
         }
 
 
@@ -135,6 +170,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAllEncargada();
             encargada.DataSource = lista;
             encargada.DataTextField = "nomarea";
+            encargada.DataValueField = "idunidad";
             encargada.DataBind();
         }
 

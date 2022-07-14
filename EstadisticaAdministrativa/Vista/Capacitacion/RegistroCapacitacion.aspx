@@ -173,7 +173,7 @@
                 
 
                 <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-secondary" CommandName="EditarCapacitacion" Text="Editar" />
-               <!-- <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-primary" CommandName="EliminarCapacitacion" Text="Eliminar" /> -->
+<%--                <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-primary" CommandName="EliminarCapacitacion" Text="Eliminar" /> --%>
 
             </Columns>
         </asp:GridView>

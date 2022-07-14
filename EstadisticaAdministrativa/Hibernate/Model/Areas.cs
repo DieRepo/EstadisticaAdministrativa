@@ -5,6 +5,7 @@ using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Model
 {
+    [Serializable]
     public class Areas
     {
         public virtual int idunidad { get; set; }
@@ -12,7 +13,6 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual string nomarea { get; set; }
         public virtual int activoarea { get; set; }
         public virtual DateTime fecha_reg_area { get; set; }
-
 
     }
 }

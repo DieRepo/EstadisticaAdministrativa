@@ -14,7 +14,6 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Table("tblcapacitacion");
             Id(x => x.IdCapacitacion).GeneratedBy.Identity();
             Map(x => x.nom_cap);
-          //  Map(x => x.fecha_inicio);
             Map(x => x.fecha_inicio);
             Map(x => x.fecha_fin);
             Map(x => x.tipoCap);
@@ -22,21 +21,9 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.asis_mujeres);
             Map(x => x.idUser);
             Map(x => x.activo);
-            //Map(x => x.idTema);
-            //Map(x => x.idUnidad);
-
-            //References(x => x.idTema).Column("idTema").Cascade.All();
-
-            //References<Temas>(x => x.idTema).Column("idTema").ForeignKey("idtema");
-
-
-            //References(x => x.idTema).Column("idtema").Cascade.All();
-            //HasMany(x => x.idunidad).Inverse().AsBag().Not.LazyLoad().Cascade.All();
-
-
-            /* References(x => x.idTema).Column("idtema").Cascade.All();
-
-            References(x => x.unidadEncargada).Column("idunidad").Cascade.All();*/
+            References(x => x.idtema).Column("idtema");
+            References(x => x.idunidad).Column("idunidad");
+            HasMany(x => x.idUnidades).Inverse().AsBag().Not.LazyLoad().Cascade.All();
 
 
 
