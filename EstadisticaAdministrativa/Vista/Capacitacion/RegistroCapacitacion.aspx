@@ -11,17 +11,17 @@
   
 
      <script type="text/javascript">
-        $(function () {
-            $('[id*=catapoyos]').multiselect({
-                  includeSelectAllOption: true
-                        });
+         $(function () {
+             $('[id*=catapoyos]').multiselect({
+                 includeSelectAllOption: true
+             });
          });
-          $(function () {
-            $('[id*=CatapotoEditar]').multiselect({
-                  includeSelectAllOption: true
-                        });
-        });
-    </script>
+         $(function () {
+             $('[id*=CatapotoEditar]').multiselect({
+                 includeSelectAllOption: true
+             });
+         });
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
@@ -44,9 +44,12 @@
             <asp:Label for="tema" runat="server" class="col-sm-3 col-form-label">Tema</asp:Label>
             <div class="col-sm-9">
                 <asp:DropDownList ID="tema" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                 
+                    <asp:ListItem Value="0" runat="server" Selected="True"> Selecciona una opción </asp:ListItem>
 
                 </asp:DropDownList>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="tema" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
+                    ValidationGroup="Button1"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="form-group row">
@@ -86,7 +89,7 @@
             <div runat="server" class="col-md-4">
                 <asp:Label runat="server">Hombres</asp:Label>
                 <asp:TextBox ID="hombre" runat="server" CssClass="form-control" ValidationGroup="Button1"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="hombre" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"  ErrorMessage="*Campo obligatorio" ControlToValidate="hombre" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
                     ValidationGroup="Button1"></asp:RequiredFieldValidator>
             </div>
              <div runat="server" class="col-md-1"></div>
@@ -94,7 +97,7 @@
             <div runat="server" class="col-md-4">
                 <asp:Label runat="server">Mujeres </asp:Label>
                 <asp:TextBox ID="mujer" runat="server" CssClass="form-control" ValidationGroup="Button1"></asp:TextBox>
-                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="mujer" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"  ErrorMessage="*Campo obligatorio" ControlToValidate="mujer" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
                     ValidationGroup="Button1"></asp:RequiredFieldValidator>
             </div>
         </div>
@@ -107,14 +110,20 @@
                     <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
 
                 </asp:DropDownList>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="encargada" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
+                    ValidationGroup="Button1"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class=" form-group row">
 
             <asp:Label for="apoyo" runat="server" class="col-sm-3 col-form-label">Area de Apoyo</asp:Label>
             <div class="col-sm-9">
-                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px"></asp:ListBox>
+                <asp:ListBox ID="catapoyos" runat="server" SelectionMode="Multiple" Width="680px">
+                    <asp:ListItem Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
+                </asp:ListBox>
             </div>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"  ErrorMessage="*Campo obligatorio, no puede estar vacío" ControlToValidate="catapoyos" ForeColor="Red" Font-Size="Small" Font-Italic="true" SetFocusOnError="true"
+                    ValidationGroup="Button1"></asp:RequiredFieldValidator>
         </div>
 
 
@@ -122,38 +131,7 @@
 
     </asp:Panel>
 
-
-
-     <!-- <asp:BoundField DataField="idtema" HeaderText="TEMA" /> -->
-    <!--  <asp:BoundField DataField="idunidad" HeaderText="UNIDAD ENCARGADA" /> -->
-
-    <!-- <asp:Panel runat="server" class="input-group">
-                     <span class="input-group-text">Tema </span>
-                        <asp:DropDownList ID="TemaEditar" runat="server" CssClass="form-control">
-                                <asp:ListItem  Value="0" Selected="True"> Selecciona una opción </asp:ListItem>
-                       </asp:DropDownList>
-
-                </asp:Panel> -->
-
-      <!--   <asp:Panel runat="server" class="input-group">
-                     <span class="input-group-text">Unidad Encargada </span>
-                      <asp:DropDownList ID="CatEncargadaEditar" runat="server" CssClass="form-control">
-                          
-                      </asp:DropDownList>
-
-                         <asp:Panel runat="server" class="input-group">
-                     <span class="input-group-text">Unidades de Apoyo </span>
-                        <asp:ListBox ID="CatApoyoEditar" runat="server" SelectionMode="Multiple">
-                   
-                </asp:ListBox>
-
-                </asp:Panel> -->
-
      <br /><br />
-
-
-
-
 
     <asp:Panel runat="server">
         <h3>Capacitaciones Registradas</h3>
@@ -165,24 +143,16 @@
             <Columns>
                 <asp:BoundField DataField="idcapacitacion" HeaderText="ID" />
                 <asp:BoundField DataField="nom_cap" HeaderText="NOMBRE CAPACITACION" />
-              
                 <asp:BoundField DataField="fecha_inicio" DataFormatString="{0:d}" HeaderText="FECHA INICIO" />
                 <asp:BoundField DataField="fecha_fin" DataFormatString="{0:d}" HeaderText="FEHCA FIN" />
                
-
-                
-
                 <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-secondary" CommandName="EditarCapacitacion" Text="Editar" />
-<%--                <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-primary" CommandName="EliminarCapacitacion" Text="Eliminar" /> --%>
+             
 
             </Columns>
         </asp:GridView>
     </asp:Panel>
 
-    
-    
-    
-    
     <asp:Panel runat="server" ID="mascara" ClientIDMode="Static" Enabled="true" Visible="false">
 
         <asp:Panel runat="server" CssClass="div_emergente p-4 form-group" ClientIDMode="AutoID">
@@ -190,14 +160,15 @@
             <div style="width: 100%; background-color: black;">
                 <asp:ImageButton runat="server" ImageUrl="../../Img/close.png" Style="width: 25px; height: 25px;" OnClick="ButtonCerrar_Click" CausesValidation="false" />
             </div>
-
+            <asp:TextBox ID="ideditar" runat="server"  class="form-control" aria-label="With textarea"></asp:TextBox>
             <asp:Panel runat="server" class="input-group">
-                 <asp:TextBox ID="ideditar" runat="server" class="form-control" aria-label="With textarea"></asp:TextBox>
+                
                 <span class="input-group-text">Nombre del curso </span>
                 <asp:TextBox ID="NombreEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
             </asp:Panel>
 
             <br />
+            
             <asp:Panel runat="server" class="input-group">
                 <span class="input-group-text">Fecha Incio </span>
 
@@ -252,13 +223,36 @@
                 <asp:TextBox ID="MujeresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
             </asp:Panel>
 
+            <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Tema </span>
+                        <asp:DropDownList ID="TemaEditar" runat="server" CssClass="form-control">
+                                
+                       </asp:DropDownList>
+
+                </asp:Panel> 
+            <br />
+
+           <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Unidad Encargada </span>
+                      <asp:DropDownList ID="CatEncargadaEditar" runat="server" CssClass="form-control">
+                          
+                      </asp:DropDownList>
+
+                         <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Unidades de Apoyo </span>
+                        <asp:ListBox ID="CatApoyoEditar" runat="server" SelectionMode="Multiple">
+                   
+                </asp:ListBox>
+
+                </asp:Panel>
+
             <asp:Button ID="ButtonEditarCap" runat="server" Text="Guardar" OnClick="ButtonEditar_Cap"  class="btn btn-secondary float-right" ValidationGroup="EditarGroup" />
             <asp:Button ID="ButtonCancelarCap" runat="server" Text="Cancelar" OnClick="ButtonCancelar_Cap" class="btn btn-secondary float-right" CausesValidation="false" />
 
         </asp:Panel>
     </asp:Panel>
 
-    <!--</asp:Panel>-->
+    </asp:Panel>
 
 </asp:Content>
 
