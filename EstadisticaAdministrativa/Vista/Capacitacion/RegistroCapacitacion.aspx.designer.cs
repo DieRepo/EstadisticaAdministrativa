@@ -222,6 +222,15 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         protected global::System.Web.UI.WebControls.TextBox NombreEditar;
 
         /// <summary>
+        /// Control TemaEditar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TemaEditar;
+
+        /// <summary>
         /// Control FechaInicioEditar.
         /// </summary>
         /// <remarks>
@@ -319,15 +328,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox MujeresEditar;
-
-        /// <summary>
-        /// Control TemaEditar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TemaEditar;
 
         /// <summary>
         /// Control CatEncargadaEditar.

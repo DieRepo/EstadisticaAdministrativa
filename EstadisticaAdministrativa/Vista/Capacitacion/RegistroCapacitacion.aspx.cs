@@ -26,21 +26,12 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 MostrarCatUni();
                 MostrarCatEncargada();
                 MostrarCatTema();
-                mostrarTabla();
+                
 
             }
-            int idEditar = Convert.ToInt32(ViewState["idEditar"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditar"]);
 
-            if (idEditar != 0)
-            {
-                List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
-                Label val = (Label)tablaCapacitacion.FindControl("idVisitaEd_0");
-                if (tablaCapacitacion.Rows.Count < 3)
-                {
-                    EditarTablaCapacitacion(jvi[0]);
-                }
-
-            }
+            mostrarTabla();
+            
 
         }
 
@@ -89,15 +80,16 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         }
 
 
-        protected CapacitacionRegistro ModificarCapacitacion()
+        protected CapacitacionRegistro ModificarCapacitacion( CapacitacionRegistro mod)
         {
             d = (Dictionary<String, String>)Session["usuario"];
             int idUsuario = Convert.ToInt32(d["idUsuario"]);
+
             mapAreas = (Dictionary<int, Areas>)ViewState["Areas"];
             mapTemas = (Dictionary<int, Temas>)ViewState["Temas"];
 
 
-            CapacitacionRegistro mod = new CapacitacionRegistro();
+            
             mod.IdCapacitacion = Convert.ToInt32(ideditar.Text);
             mod.nom_cap = NombreEditar.Text;
             mod.fecha_inicio = Convert.ToDateTime(FechaInicioEditar.Text);
@@ -108,15 +100,17 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mod.idUser = idUsuario;
             mod.activo = 1;
 
-            int idtema = Convert.ToInt32(tema.SelectedValue);
+
+
+            int idtema = Convert.ToInt32(TemaEditar.SelectedValue);
             mod.idtema = mapTemas[idtema];
 
-            int unidadEncargada = Convert.ToInt32(encargada.SelectedValue);
+            int unidadEncargada = Convert.ToInt32(CatEncargadaEditar.SelectedValue);
             mod.idunidad = mapAreas[unidadEncargada];
 
             List<AreaApoyo> listaArea = new List<AreaApoyo>();
 
-            foreach (ListItem l in catapoyos.Items)
+            foreach (ListItem l in CatApoyoEditar.Items)
             {
                 if (l.Selected)
                 {
@@ -151,6 +145,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
 
                 ideditar.Text = capacitaciones.IdCapacitacion.ToString();
+               
                 NombreEditar.Text = capacitaciones.nom_cap;
                 FechaInicioEditar.Text = capacitaciones.fecha_inicio.ToString();
                 FechaFinEditar.Text = capacitaciones.fecha_fin.ToString();
@@ -175,6 +170,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                         {
                             li.Selected = true;
                         }
+                     
                     }
                 }
 
@@ -205,6 +201,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             tipo.SelectedValue = "";
             hombre.Text = "";
             mujer.Text = "";
+            tema.SelectedValue = "";
+            encargada.SelectedValue = "";
+            catapoyos.SelectedValue = "";
 
         }
         public void MostrarCatUni()
@@ -301,7 +300,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         {
             ViewState["idEditar"] = 0;
 
-
             try
             {
                 idcapacitacionEditar = (int)tablaCapacitacion.DataKeys[Convert.ToInt32(e.CommandArgument)].Value;
@@ -326,8 +324,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         }
 
-
-
         protected void paginador(object sender, GridViewPageEventArgs e)
         {
             tablaCapacitacion.PageIndex = e.NewPageIndex;
@@ -338,17 +334,13 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         /*btn EDITAR capacitacion*/
         protected void ButtonEditar_Cap(object sender, EventArgs e)
         {
-            MostrarCatEncargadaEditar();
-            MostrarCatTemaEditar();
-            MostrarCatUniEditar();
-
             try
             {
                 int idEditar = Convert.ToInt32(ViewState["idEditar"]);
                 List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
 
 
-                var guardarnuevo = ModificarCapacitacion();
+                var guardarnuevo = ModificarCapacitacion(jvi[0]);
 
                 CapacitacionDAO.Guardar(guardarnuevo);
                 mascara.Visible = false;

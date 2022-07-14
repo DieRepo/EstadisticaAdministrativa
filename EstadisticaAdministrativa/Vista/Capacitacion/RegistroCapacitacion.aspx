@@ -160,15 +160,22 @@
             <div style="width: 100%; background-color: black;">
                 <asp:ImageButton runat="server" ImageUrl="../../Img/close.png" Style="width: 25px; height: 25px;" OnClick="ButtonCerrar_Click" CausesValidation="false" />
             </div>
-            <asp:TextBox ID="ideditar" runat="server"  class="form-control" aria-label="With textarea"></asp:TextBox>
+            <asp:TextBox ID="ideditar" runat="server"  class="form-control" aria-label="With textarea" Enabled="False"></asp:TextBox>
             <asp:Panel runat="server" class="input-group">
                 
                 <span class="input-group-text">Nombre del curso </span>
                 <asp:TextBox ID="NombreEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
             </asp:Panel>
 
-            <br />
-            
+           
+              <asp:Panel runat="server" class="input-group">
+                     <span class="input-group-text">Tema </span>
+                        <asp:DropDownList ID="TemaEditar" runat="server" CssClass="form-control">
+                                
+                       </asp:DropDownList>
+
+                </asp:Panel> 
+        
             <asp:Panel runat="server" class="input-group">
                 <span class="input-group-text">Fecha Incio </span>
 
@@ -181,7 +188,7 @@
                 <axT:MaskedEditExtender ID="emision_extender" runat="server" TargetControlID="FechaInicioEditar" MaskType="Date" Mask="99/99/9999"
                     MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
                 <axT:MaskedEditValidator ID="emision_validator" runat="server" ControlExtender="emision_extender" ControlToValidate="FechaInicioEditar" IsValidEmpty="false"
-                    EmptyValueMessage="* Fecha emisión no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
+                    EmptyValueMessage="* Fecha  no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
                 <axT:CalendarExtender runat="server" TargetControlID="FechaInicioEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
            
 
@@ -199,7 +206,7 @@
                  <axT:MaskedEditExtender ID="emision_extender1" runat="server" TargetControlID="FechaFinEditar" MaskType="Date" Mask="99/99/9999"
                     MessageValidatorTip="true" AutoComplete="true" OnInvalidCssClass="text-danger" />
                 <axT:MaskedEditValidator ID="emision_validator1" runat="server" ControlExtender="emision_extender1" ControlToValidate="FechaFinEditar" IsValidEmpty="false"
-                    EmptyValueMessage="* Fecha emisión no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
+                    EmptyValueMessage="* Fecha no puede estar vació" InvalidValueMessage="* Fecha no valida" ForeColor="Red" Font-Size="Small" Font-Italic="true" Display="Dynamic" />
                 <axT:CalendarExtender runat="server" TargetControlID="FechaFinEditar" Format="dd/MM/yyyy" PopupButtonID="emision_icon" />
            
 
@@ -217,20 +224,12 @@
             <asp:Panel runat="server" class="input-group">
                 <span class="input-group-text">Asistencia Hombres </span>
                 <asp:TextBox ID="HombresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
-            </asp:Panel>
-            <asp:Panel runat="server" class="input-group">
+         
                 <span class="input-group-text">Asistencia Mujeres </span>
                 <asp:TextBox ID="MujeresEditar" runat="server" class="form-control" aria-label="With textarea" required="true"></asp:TextBox>
             </asp:Panel>
 
-            <asp:Panel runat="server" class="input-group">
-                     <span class="input-group-text">Tema </span>
-                        <asp:DropDownList ID="TemaEditar" runat="server" CssClass="form-control">
-                                
-                       </asp:DropDownList>
-
-                </asp:Panel> 
-            <br />
+          
 
            <asp:Panel runat="server" class="input-group">
                      <span class="input-group-text">Unidad Encargada </span>
