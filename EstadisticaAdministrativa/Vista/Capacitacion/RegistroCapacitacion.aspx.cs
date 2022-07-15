@@ -26,6 +26,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 MostrarCatUni();
                 MostrarCatEncargada();
                 MostrarCatTema();
+                MostrarCatEncargadaEditar();
+                MostrarCatTemaEditar();
+                MostrarCatUniEditar();
             }
 
             mostrarTabla();
@@ -103,10 +106,34 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             int idtema = Convert.ToInt32(TemaEditar.SelectedValue);
             mod.idtema = mapTemas[idtema];
 
-            int unidadEncargada = Convert.ToInt32(CatEncargadaEditar.SelectedValue);
+            int unidadEncargada = Convert.ToInt32(encargada.SelectedValue);
             mod.idunidad = mapAreas[unidadEncargada];
 
+            IList<AreaApoyo> ap = mod.idUnidades;
             List<AreaApoyo> listaArea = new List<AreaApoyo>();
+            ListItemCollection itemsAreaApoyo = CatApoyoEditar.Items;
+
+            foreach (AreaApoyo area in ap)
+            {
+                Console.WriteLine(area.idunidad.idunidad);
+                foreach (ListItem l in CatApoyoEditar.Items)
+                {
+                    if (area.idunidad.idunidad.ToString().Equals(l.Value))
+                    {
+                        if (l.Selected)
+                        {
+                            area.activo = 1;
+                            l.Selected = false;
+                        }
+                        else
+                        {
+                            area.activo = 0;
+                        }
+                    }
+
+                }
+            }
+
 
             foreach (ListItem l in CatApoyoEditar.Items)
             {
@@ -117,11 +144,10 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                     AreaApoyo apoyo = new AreaApoyo();
                     apoyo.idunidad = area;
                     apoyo.IdCapacitacion = mod;
-
-                    listaArea.Add(apoyo);
+                    ap.Add(apoyo);
                 }
             }
-            mod.idUnidades = listaArea;
+            mod.idUnidades = ap;
 
             return mod;
 
@@ -129,9 +155,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         protected void EditarTablaCapacitacion(CapacitacionRegistro capacitaciones)
         {
-            MostrarCatEncargadaEditar();
-            MostrarCatTemaEditar();
-            MostrarCatUniEditar();
             try
             {
                 d = (Dictionary<String, String>)Session["usuario"];
@@ -164,7 +187,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 {
                     foreach (AreaApoyo area in capacitaciones.idUnidades)
                     {
-                        if (li.Value.Equals(area.idunidad.idunidad.ToString()))
+                        if (li.Value.Equals(area.idunidad.idunidad.ToString()) && area.activo == 1)
                         {
                             li.Selected = true;
                         }
@@ -250,7 +273,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             List<Areas> lista = (List<Areas>)UnidadesDAO.ListAll();
             CatApoyoEditar.DataSource = lista;
             CatApoyoEditar.DataTextField = "nomarea";
-            CatApoyoEditar.DataValueField = "idUnidad";
+            CatApoyoEditar.DataValueField = "idunidad";
             CatApoyoEditar.DataBind();
             mapAreas = new Dictionary<int, Areas>();
             foreach (Areas area in lista)
