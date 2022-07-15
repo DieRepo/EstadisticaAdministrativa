@@ -26,8 +26,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 MostrarCatUni();
                 MostrarCatEncargada();
                 MostrarCatTema();
-                
-
             }
 
             mostrarTabla();
@@ -201,7 +199,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             tipo.SelectedValue = "";
             hombre.Text = "";
             mujer.Text = "";
-            tema.SelectedValue = "";
+            //tema.SelectedValue = "";
             encargada.SelectedValue = "";
             catapoyos.SelectedValue = "";
 
