@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Windows.Controls;
 
 namespace EstadisticaAdministrativa.Vista.Justicia
 {
@@ -26,8 +20,9 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             //lalo
         }
 
-        public void TreeView_SelectNode( ) { 
-        
+        public void TreeView_SelectNode()
+        {
+
         }
     }
 }

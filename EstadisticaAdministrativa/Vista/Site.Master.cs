@@ -64,7 +64,8 @@ namespace EstadisticaAdministrativa
                     listaPaginas.Add(location);
                 }
 
-                for (int i=0; i < menu.Items.Count; i++) {
+                for (int i = 0; i < menu.Items.Count; i++)
+                {
                     menu.Items[i].Selectable = false;
                 }
 
@@ -81,11 +82,13 @@ namespace EstadisticaAdministrativa
                     con.Close();
                 }
             }
-           
-            
+
+
             Boolean acceso = pagina.EndsWith("Inicio.aspx") ? true : false;
-            foreach (var l in listaPaginas) {
-                if (l.EndsWith(pagina)) {
+            foreach (var l in listaPaginas)
+            {
+                if (l.EndsWith(pagina))
+                {
                     acceso = true;
                 }
             }
@@ -94,20 +97,22 @@ namespace EstadisticaAdministrativa
             {
                 redirectInicio(); //Si no tiene acceso se envia a página de Inicio
             }
-            else {
+            else
+            {
 
                 //Agregar información del usuario para mostrar
                 //Session["usuario"]
 
                 d = (Dictionary<String, String>)Session["usuario"];
 
-                String nombre = d["nombre"] ;
+                String nombre = d["nombre"];
                 TextNombreUsuario.Text = nombre;
             }
 
         }
 
-        protected string obtenerPagina() {
+        protected string obtenerPagina()
+        {
             ruta = HttpContext.Current.Request.Url.ToString();
             string cadena = HttpContext.Current.Request.Url.AbsoluteUri;
             string[] Separado = cadena.Split('/');
@@ -115,7 +120,8 @@ namespace EstadisticaAdministrativa
             return Final;
         }
 
-        protected void redirectLogin() {
+        protected void redirectLogin()
+        {
             String[] sc = HttpContext.Current.Request.Url.Host.ToString().Split('/');
             Response.Redirect("~/Login.aspx");
         }

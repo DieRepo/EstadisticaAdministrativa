@@ -106,8 +106,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\alertifyjs\alertify.css" />
+    <Content Include="Css\alertifyjs\alertify.min.css" />
+    <Content Include="Css\alertifyjs\alertify.rtl.css" />
+    <Content Include="Css\alertifyjs\alertify.rtl.min.css" />
+    <Content Include="Css\alertifyjs\themes\bootstrap.css" />
+    <Content Include="Css\alertifyjs\themes\bootstrap.min.css" />
+    <Content Include="Css\alertifyjs\themes\bootstrap.rtl.css" />
+    <Content Include="Css\alertifyjs\themes\bootstrap.rtl.min.css" />
+    <Content Include="Css\alertifyjs\themes\default.css" />
+    <Content Include="Css\alertifyjs\themes\default.min.css" />
+    <Content Include="Css\alertifyjs\themes\default.rtl.css" />
+    <Content Include="Css\alertifyjs\themes\default.rtl.min.css" />
+    <Content Include="Css\alertifyjs\themes\semantic.css" />
+    <Content Include="Css\alertifyjs\themes\semantic.min.css" />
+    <Content Include="Css\alertifyjs\themes\semantic.rtl.css" />
+    <Content Include="Css\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Css\animate.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\Menu.css" />
+    <Content Include="Css\pnotify.custom.min.css" />
+    <Content Include="Css\Sesion.css" />
     <Content Include="Error\Error.aspx" />
     <Content Include="Error\Error404.aspx" />
     <Content Include="Img\cerrar.png" />
@@ -115,6 +134,9 @@
     <Content Include="Img\Logo_200x60.png" />
     <Content Include="Img\pjem.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\alertify.js" />
+    <Content Include="Scripts\alertify.min.js" />
+    <Content Include="Scripts\pnotify.custom.min.js" />
     <Content Include="Scripts\Sesion.js" />
     <Content Include="Vista\Capacitacion\RegistroCapacitacion.aspx" />
     <Content Include="Vista\Inicio.aspx" />
@@ -244,6 +266,38 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

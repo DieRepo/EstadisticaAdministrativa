@@ -1,8 +1,5 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Modelo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Model
 {
@@ -14,6 +11,6 @@ namespace EstadisticaAdministrativa.Hibernate.Model
         public virtual int total { get; set; }
         public virtual int dias { get; set; }
         public virtual JusticiaVisita JusticiaVisita { get; set; }
-        public virtual int idUser {get; set;}
+        public virtual int idUser { get; set; }
     }
 }

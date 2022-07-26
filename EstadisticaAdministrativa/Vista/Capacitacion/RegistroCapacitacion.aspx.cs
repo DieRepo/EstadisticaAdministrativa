@@ -1,12 +1,12 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Controller;
 using EstadisticaAdministrativa.Hibernate.Model;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
+
 
 namespace EstadisticaAdministrativa.Vista.Capacitacion
 
@@ -19,8 +19,10 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         Dictionary<int, Areas> mapAreas;
         Dictionary<int, Temas> mapTemas;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
+      
             if (!IsPostBack)
             {
                 MostrarCatUni();
@@ -29,11 +31,16 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 MostrarCatEncargadaEditar();
                 MostrarCatTemaEditar();
                 MostrarCatUniEditar();
+
+                mostrarTabla();
+                CalendarExtender1.StartDate = DateTime.Today;
+                CalendarExtender2.StartDate = DateTime.Today;
+                
+                hombre.Attributes.Add("onkeypress", "javascript:return SoloNum(event)");
+                mujer.Attributes.Add("onkeypress", "javascript:return SoloNum(event)");
+                HombresEditar.Attributes.Add("onkeypress", "javascript:return SoloNum(event)");
+                MujeresEditar.Attributes.Add("onkeypress", "javascript:return SoloNum(event)");
             }
-
-            mostrarTabla();
-            
-
         }
 
 
@@ -44,13 +51,44 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mapAreas = (Dictionary<int, Areas>)ViewState["Areas"];
             mapTemas = (Dictionary<int, Temas>)ViewState["Temas"];
 
+            var date1 = fec_ini.Text;
+            var date2 = fec_fin.Text;
+
+            var numhombres = Convert.ToInt32(hombre.Text);
+            var nummujeres = Convert.ToInt32(mujer.Text);
+
+            DateTime dt1 = DateTime.Now;
+            DateTime dt2 = dt1;
+            var culture = CultureInfo.CreateSpecificCulture("es-MX");
+            var styles = DateTimeStyles.None;
+
+            bool fechaValida = DateTime.TryParse(date1, culture, styles, out dt1)
+                               && DateTime.TryParse(date2, culture, styles, out dt2);
+
+            Console.WriteLine(dt1 >= dt2);
+
+            if (!fechaValida || dt1 >= dt2)
+            {
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved error fechas', function() {}, 'popup1');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Información", "mensaje('Error','Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
+                MessageBox.Show("Error, favor de verificar valores");
+                return null;
+            }
+            if (numhombres == 0 && nummujeres == 0)
+            {
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved error numeros', function() {}, 'popup1');", true);
+                MessageBox.Show("Error, favor de verificar valores");
+                return null;
+            }
+
             CapacitacionRegistro capacita = new CapacitacionRegistro();
             capacita.nom_cap = nomcap.Text;
-            capacita.fecha_fin = Convert.ToDateTime(fec_fin.Text);
-            capacita.fecha_inicio = Convert.ToDateTime(fec_ini.Text);
+            capacita.fecha_inicio = dt1;
+            capacita.fecha_fin = dt2;
             capacita.tipoCap = Convert.ToInt32(tipo.SelectedValue);
-            capacita.asis_hombres = Convert.ToInt32(hombre.Text);
-            capacita.asis_mujeres = Convert.ToInt32(mujer.Text);
+
+            capacita.asis_hombres = numhombres;
+            capacita.asis_mujeres = nummujeres;
             capacita.activo = 1;
 
             capacita.idUser = idUsuario;
@@ -71,6 +109,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                     AreaApoyo apoyo = new AreaApoyo();
                     apoyo.idunidad = area;
                     apoyo.IdCapacitacion = capacita;
+                    apoyo.activo=1;
 
                     listaArea.Add(apoyo);
                 }
@@ -78,10 +117,11 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             capacita.idUnidades = listaArea;
             return capacita;
 
+
         }
 
 
-        protected CapacitacionRegistro ModificarCapacitacion( CapacitacionRegistro mod)
+        protected CapacitacionRegistro ModificarCapacitacion(CapacitacionRegistro mod)
         {
             d = (Dictionary<String, String>)Session["usuario"];
             int idUsuario = Convert.ToInt32(d["idUsuario"]);
@@ -89,15 +129,42 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mapAreas = (Dictionary<int, Areas>)ViewState["Areas"];
             mapTemas = (Dictionary<int, Temas>)ViewState["Temas"];
 
+            var date1 = FechaInicioEditar.Text;
+            var date2 = FechaFinEditar.Text;
+            var numhombres = Convert.ToInt32(HombresEditar.Text);
+            var nummujeres = Convert.ToInt32(MujeresEditar.Text);
 
-            
+
+            DateTime dt1 = DateTime.Now;
+            DateTime dt2 = dt1;
+            var culture = CultureInfo.CreateSpecificCulture("es-MX");
+            var styles = DateTimeStyles.None;
+
+            bool fechaValida = DateTime.TryParse(date1, culture, styles, out dt1)
+                               && DateTime.TryParse(date2, culture, styles, out dt2);
+
+            if (!fechaValida || dt1 >= dt2)
+            {
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Successfully', function() {}, 'popup1');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Información", "mensaje('Error','Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
+                MessageBox.Show("Error, favor de verificar valores de fechas");
+                return null;
+            }
+            if (numhombres == 0 && nummujeres == 0)
+            {
+                
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Successfully', function() {}, 'popup1');", true);
+                MessageBox.Show("Error, favor de verificar valores");
+                return null;
+            }
+
             mod.IdCapacitacion = Convert.ToInt32(ideditar.Text);
             mod.nom_cap = NombreEditar.Text;
-            mod.fecha_inicio = Convert.ToDateTime(FechaInicioEditar.Text);
-            mod.fecha_fin = Convert.ToDateTime(FechaFinEditar.Text);
+            mod.fecha_inicio = dt1;
+            mod.fecha_fin = dt2;
             mod.tipoCap = Convert.ToInt32(TipoEditar.SelectedValue);
-            mod.asis_hombres = Convert.ToInt32(HombresEditar.Text);
-            mod.asis_mujeres = Convert.ToInt32(MujeresEditar.Text);
+            mod.asis_hombres = numhombres;
+            mod.asis_mujeres = nummujeres;
             mod.idUser = idUsuario;
             mod.activo = 1;
 
@@ -154,7 +221,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         }
 
         protected void EditarTablaCapacitacion(CapacitacionRegistro capacitaciones)
-        {
+        {       
             try
             {
                 d = (Dictionary<String, String>)Session["usuario"];
@@ -163,10 +230,7 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 mapAreas = (Dictionary<int, Areas>)ViewState["Areas"];
                 mapTemas = (Dictionary<int, Temas>)ViewState["Temas"];
 
-
-
                 ideditar.Text = capacitaciones.IdCapacitacion.ToString();
-               
                 NombreEditar.Text = capacitaciones.nom_cap;
                 FechaInicioEditar.Text = capacitaciones.fecha_inicio.ToString();
                 FechaFinEditar.Text = capacitaciones.fecha_fin.ToString();
@@ -175,7 +239,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 MujeresEditar.Text = capacitaciones.asis_mujeres.ToString();
 
                 capacitaciones.idUser = idUsuario;
-
 
                 TemaEditar.SelectedValue = capacitaciones.idtema.idtema.ToString();
                 CatEncargadaEditar.SelectedValue = capacitaciones.idunidad.idunidad.ToString();
@@ -191,11 +254,8 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                         {
                             li.Selected = true;
                         }
-                     
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -207,11 +267,24 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
         protected void GuardarCapacita(object sender, EventArgs e)
         {
-            var guardarnuevo = Nuevover();
 
-            CapacitacionDAO.Guardar(guardarnuevo);
-            limpiarCampoos();
-            mostrarTabla();
+            var guardarnuevo = Nuevover();
+            if (guardarnuevo == null)
+            {
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Error', function() {}, 'popup1');", true);
+                MessageBox.Show("Error, Capacitación no guarda");
+                mostrarTabla();
+                limpiarCampoos();
+            }
+            else
+            {
+
+                CapacitacionDAO.Guardar(guardarnuevo);
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Guardado', function() {}, 'popup2');", true);
+                MessageBox.Show("Exito, Capacitación guardada");
+                limpiarCampoos();
+                mostrarTabla();
+            }
         }
 
         public void limpiarCampoos()
@@ -222,10 +295,9 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             tipo.SelectedValue = "";
             hombre.Text = "";
             mujer.Text = "";
-            //tema.SelectedValue = "";
-            encargada.SelectedValue = "";
-            catapoyos.SelectedValue = "";
-
+            MostrarCatEncargada();
+            MostrarCatUni();
+            MostrarCatTema();
         }
         public void MostrarCatUni()
         {
@@ -308,14 +380,12 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             CatEncargadaEditar.DataBind();
         }
 
-
         public void mostrarTabla()
         {
             List<CapacitacionRegistro> lista = (List<CapacitacionRegistro>)CapacitacionDAO.VistaTablas();
             tablaCapacitacion.DataSource = lista;
             tablaCapacitacion.DataBind();
         }
-
 
         protected void tablaCapacitacion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -351,7 +421,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             mostrarTabla();
         }
 
-
         /*btn EDITAR capacitacion*/
         protected void ButtonEditar_Cap(object sender, EventArgs e)
         {
@@ -360,12 +429,24 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 int idEditar = Convert.ToInt32(ViewState["idEditar"]);
                 List<CapacitacionRegistro> jvi = CapacitacionDAO.ObtenCapacitacion(idEditar);
 
-
+                
                 var guardarnuevo = ModificarCapacitacion(jvi[0]);
 
-                CapacitacionDAO.Guardar(guardarnuevo);
-                mascara.Visible = false;
-                mostrarTabla();
+                if (guardarnuevo==null)
+                {
+
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Error', function() {}, 'popup1');", true);
+                    MessageBox.Show("Error, Capacitación no guardada");
+                }
+                else
+                {
+                    CapacitacionDAO.Guardar(guardarnuevo);
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Guardada', function() {}, 'popup2');", true);
+                    MessageBox.Show("Exito, Capacitación modificada");
+                    mascara.Visible = false;
+                    mostrarTabla();
+                }
+            
             }
             catch (Exception ex)
             {
@@ -373,8 +454,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             }
 
             Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);
-
-
 
         }
 
@@ -384,17 +463,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
         {
             mascara.Visible = false;
             Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);
-        }
-
-        /*btn cerrar*/
-        protected void ButtonCerrar_Click(object sender, EventArgs e)
-        {
-            mascara.Visible = false;
-        }
-
-        protected void tablaCapacitacion_PageIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

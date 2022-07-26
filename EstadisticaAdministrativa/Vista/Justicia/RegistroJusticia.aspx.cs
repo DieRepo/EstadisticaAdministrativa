@@ -1,14 +1,10 @@
-﻿using EstadisticaAdministrativa.Hibernate;
-using EstadisticaAdministrativa.Hibernate.Controller;
+﻿using EstadisticaAdministrativa.Hibernate.Controller;
 using EstadisticaAdministrativa.Hibernate.Model;
 using EstadisticaAdministrativa.Hibernate.Modelo;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace EstadisticaAdministrativa.Vista.Justicia
@@ -23,19 +19,20 @@ namespace EstadisticaAdministrativa.Vista.Justicia
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             generarTabla();
             mostrarTabla();
             int idEditar = Convert.ToInt32(ViewState["idEditar"]) == 0 ? 0 : Convert.ToInt32(ViewState["idEditar"]);
-            
-            if (idEditar != 0) {
+
+            if (idEditar != 0)
+            {
                 List<JusticiaVisita> jvi = JusticiaVisitaDAO.ObtenJusticiaVisita(idEditar);
                 Label val = (Label)TablaEditar.FindControl("idVisitaEd_0");
-                    if (TablaEditar.Rows.Count < 3)
-                    {
-                        generarTablaDinamicaEditar(jvi[0]);
-                    }
-                
+                if (TablaEditar.Rows.Count < 3)
+                {
+                    generarTablaDinamicaEditar(jvi[0]);
+                }
+
             }
 
         }
@@ -79,7 +76,7 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             try
             {
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.AppSettings["local"]);
-                con.Open(); 
+                con.Open();
                 cmd = new MySqlCommand("obtenDatosTablaJusticia", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 MySqlDataReader resultado = cmd.ExecuteReader();
@@ -140,9 +137,10 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             return datos;
         }
 
-        protected JusticiaVisita leerTabla() {
+        protected JusticiaVisita leerTabla()
+        {
             int[] valores = obtenerFilasColumnas();
-            int i = 0, j = -1, contRow = 1, countTemp=2, idTipo=0;
+            int i = 0, j = -1, contRow = 1, countTemp = 2, idTipo = 0;
 
             d = (Dictionary<String, String>)Session["usuario"];
 
@@ -161,12 +159,14 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             var subReg = new JusticiaRegistro();
 
             //Agregar información de los tipos de Visitas
-            foreach (TableRow rw in Tabla1.Rows) {
-                if (contRow > countTemp) {
+            foreach (TableRow rw in Tabla1.Rows)
+            {
+                if (contRow > countTemp)
+                {
                     subReg = new JusticiaRegistro();
                     subReg.JusticiaVisita = jv;
 
-                    String idLabel = "idVisita_" + (contRow - 3 );
+                    String idLabel = "idVisita_" + (contRow - 3);
                     Label labelText = (Label)rw.FindControl(idLabel);
                     idTipo = Convert.ToInt32(labelText.Text);
                     subReg.idTipo = idTipo;
@@ -176,8 +176,10 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                     {
                         if (j == -1)
                         {
-                            
-                        } else if (j < (rw.Cells.Count - countTemp)) {
+
+                        }
+                        else if (j < (rw.Cells.Count - countTemp))
+                        {
                             string idc = "c_" + i + "_" + j;
                             TextBox val = (TextBox)rw.FindControl(idc);
                             int valor = val.Text.Equals("") ? 0 : Convert.ToInt32(val.Text);
@@ -189,10 +191,11 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                     j = -1;
                     list.Add(subReg);
                 }
-                else {
+                else
+                {
                     //Row 1 y 2 son encabezados po lo que no se validan
                 }
-                contRow++;   
+                contRow++;
             }
             jv.JusticiaRegistros = list;
 
@@ -201,8 +204,9 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             var subRegBot = new JusticiaBotarga();
             subRegBot.idUser = idUsuario;
             string fechaB = FechaApoyo.Text.Equals("") ? "" : FechaApoyo.Text;
-            if (!fechaB.Equals("")) {
-                subRegBot.fechaReporta =  Convert.ToDateTime(fechaB);
+            if (!fechaB.Equals(""))
+            {
+                subRegBot.fechaReporta = Convert.ToDateTime(fechaB);
             }
             string evento = TextBoxEventos.Text.Equals("") ? "0" : TextBoxEventos.Text;
             subRegBot.eventos = Convert.ToInt32(evento);
@@ -258,7 +262,7 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                         }
                         i++;
                         j = -1;
-                        jv.JusticiaRegistros[subReg.idTipo-1] = subReg;
+                        jv.JusticiaRegistros[subReg.idTipo - 1] = subReg;
                     }
                     else
                     {
@@ -283,33 +287,45 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                 subRegBot.JusticiaVisita = jv;
                 jv.ApoyoBotargas[0] = subRegBot;
             }
-            catch (Exception ex) {
-                Console.WriteLine("Exception  "+ex.ToString());
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception  " + ex.ToString());
             }
 
             return jv;
         }
 
-        protected JusticiaRegistro AgregaValor(JusticiaRegistro jr, int row, int cell, int valor) {
+        protected JusticiaRegistro AgregaValor(JusticiaRegistro jr, int row, int cell, int valor)
+        {
             if (cell == 0)
             {
                 jr.ninoMujer = valor;
-            }else if (cell == 1) {
+            }
+            else if (cell == 1)
+            {
                 jr.ninoHombre = valor;
-            } else if (cell == 2) {
+            }
+            else if (cell == 2)
+            {
                 jr.madres = valor;
-            } else if (cell == 3) {
+            }
+            else if (cell == 3)
+            {
                 jr.padres = valor;
-            } else if (cell == 4) {
+            }
+            else if (cell == 4)
+            {
                 jr.docenteMujer = valor;
-            } else if (cell == 5) {
+            }
+            else if (cell == 5)
+            {
                 jr.docenteHombre = valor;
             }
 
             return jr;
         }
 
-        protected int AgregaValorEdita(JusticiaRegistro jr,  int cell)
+        protected int AgregaValorEdita(JusticiaRegistro jr, int cell)
         {
             int valor = 0;
             try
@@ -340,7 +356,8 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                 }
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
             }
 
             return valor;
@@ -349,7 +366,8 @@ namespace EstadisticaAdministrativa.Vista.Justicia
 
         protected void generarTablaDinamicaEditar(JusticiaVisita justicia)
         {
-            try {
+            try
+            {
                 int[] valores = obtenerFilasColumnas();
                 List<string[]> lista = obtenerTiposVisitas();
                 int numrows = valores[0];
@@ -418,11 +436,12 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                 TextBox2.Text = justicia.ApoyoBotargas[0].eventos.ToString();
                 TextBox3.Text = justicia.ApoyoBotargas[0].total.ToString();
                 TextBox4.Text = justicia.ApoyoBotargas[0].dias.ToString();
-            } 
-            catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine("Exception :" + ex.ToString());
             }
-            
+
         }
 
         protected void generarTablaDinamica()
@@ -474,14 +493,15 @@ namespace EstadisticaAdministrativa.Vista.Justicia
 
         protected void Button_Guardar_Click(object sender, EventArgs e)
         {
-            var justicia  = leerTabla();
-            JusticiaVisitaDAO.GuardarJusticiaVisita(justicia) ;
+            var justicia = leerTabla();
+            JusticiaVisitaDAO.GuardarJusticiaVisita(justicia);
             limpiarCampos();
             mostrarTabla();
-           
+
         }
 
-        public void mostrarTabla() {
+        public void mostrarTabla()
+        {
             List<JusticiaVisita> lista = (List<JusticiaVisita>)JusticiaVisitaDAO.ListAll();
             tablaRegistros.DataSource = lista;
             tablaRegistros.DataBind();
@@ -502,12 +522,13 @@ namespace EstadisticaAdministrativa.Vista.Justicia
                 ViewState["idEditar"] = idRegistroEditar;
                 List<JusticiaVisita> result = JusticiaVisitaDAO.ObtenJusticiaVisita(idRegistroEditar);
                 if (e.CommandName.Equals("EditarRegistro"))
+                {
+                    if (result[0] != null)
                     {
-                    if (result[0] != null) {
                         generarTablaDinamicaEditar(result[0]);
                     }
                     mascara.Visible = true;
-                }  
+                }
             }
             catch (Exception ex)
             {
@@ -517,25 +538,29 @@ namespace EstadisticaAdministrativa.Vista.Justicia
         }
 
 
-        public void generarTabla() {
+        public void generarTabla()
+        {
 
             generarTablaDinamica();
-//            generarTablaDinamicaEditar(new JusticiaVisita());
+            //            generarTablaDinamicaEditar(new JusticiaVisita());
         }
 
-        
+
 
         protected void ButtonEditar_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 int idEditar = Convert.ToInt32(ViewState["idEditar"]);
                 List<JusticiaVisita> jvi = JusticiaVisitaDAO.ObtenJusticiaVisita(idEditar);
                 JusticiaVisita jv = leerTablaEditar(jvi[0]);
                 JusticiaVisitaDAO.GuardarJusticiaVisita(jv);
                 mascara.Visible = false;
                 mostrarTabla();
-            } catch (Exception ex) {
-                Console.WriteLine("Exception: "+ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
             Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);

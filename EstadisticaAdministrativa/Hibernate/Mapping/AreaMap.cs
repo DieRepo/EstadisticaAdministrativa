@@ -1,9 +1,5 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Model;
 using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
@@ -17,7 +13,7 @@ namespace EstadisticaAdministrativa.Hibernate.Mapping
             Map(x => x.nomarea);
             Map(x => x.activoarea);
             Map(x => x.fecha_reg_area);
-           
+
         }
     }
 }

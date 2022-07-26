@@ -1,10 +1,8 @@
-﻿using EstadisticaAdministrativa.Hibernate.Modelo;
-using EstadisticaAdministrativa.Hibernate.Model; 
+﻿using EstadisticaAdministrativa.Hibernate.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Controller
 {
@@ -14,7 +12,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
         public static CapacitacionRegistro Guardar(CapacitacionRegistro o)
         {
             NHibernateHelper.OpenSession();
-           
+
 
             var t = NHibernateHelper.Sesion.BeginTransaction();
             try
@@ -72,7 +70,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 return NHibernateHelper.Sesion.Query<CapacitacionRegistro>()
                                         .Where(c => c.IdCapacitacion == id)
                                         .ToList();
-                
+
             }
             catch (Exception e)
             {
