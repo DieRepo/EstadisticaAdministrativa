@@ -82,14 +82,15 @@ namespace EstadisticaAdministrativa
             }
             catch (Exception ex)
             {
-                
+
 
                 Console.WriteLine(ex.ToString());
                 textoError.Visible = true;
                 textoError.Text = "Usuario o contraseña incorrectos";
 
             }
-            finally {
+            finally
+            {
                 if (con != null)
                 {
                     con.Dispose();

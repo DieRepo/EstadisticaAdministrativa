@@ -157,7 +157,7 @@ ul > li :hover > .nav-flyout {
     width: 100%;
 }
 
-#mascara {
+#mascara, .mascara1 {
     position: fixed;
     top: 0px;
     left: 0px;
