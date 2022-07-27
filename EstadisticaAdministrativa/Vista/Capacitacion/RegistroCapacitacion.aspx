@@ -80,7 +80,7 @@
                     <asp:BoundField DataField="idcapacitacion" HeaderText="ID" />
                     <asp:BoundField DataField="nom_cap" HeaderText="NOMBRE CAPACITACION" />
                     <asp:BoundField DataField="fecha_inicio" DataFormatString="{0:d}" HeaderText="FECHA INICIO" />
-                    <asp:BoundField DataField="fecha_fin" DataFormatString="{0:d}" HeaderText="FEHCA FIN" />
+                    <asp:BoundField DataField="fecha_fin" DataFormatString="{0:d}" HeaderText="FECHA FIN" />
 
                     <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn-secondary" CommandName="EditarCapacitacion" Text="Editar" />
 
