@@ -1,6 +1,9 @@
-﻿using EstadisticaAdministrativa.Hibernate.Modelo;
+﻿using EstadisticaAdministrativa.Hibernate.Model;
 using FluentNHibernate.Mapping;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
     class JusticiaMap : ClassMap<JusticiaVisita>
