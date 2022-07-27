@@ -453,8 +453,6 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 Console.WriteLine("Exception: " + ex.ToString());
             }
 
-            Response.Redirect(this.Page.Request.AppRelativeCurrentExecutionFilePath);
-
         }
 
 
