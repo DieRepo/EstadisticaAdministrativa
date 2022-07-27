@@ -1,4 +1,5 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Model;
+using EstadisticaAdministrativa.Hibernate.Modelo;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;

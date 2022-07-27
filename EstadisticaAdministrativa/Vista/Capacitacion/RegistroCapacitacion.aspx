@@ -151,7 +151,7 @@
                 <asp:Panel runat="server" class="input-group">
                     <span class="input-group-text col-sm-3">Tipo </span>
                     <asp:DropDownList ID="TipoEditar" runat="server" CssClass="form-control">
-                        <asp:ListItem Value="1"> Líneal </asp:ListItem>
+                        <asp:ListItem Value="1"> Línea </asp:ListItem>
                         <asp:ListItem Value="2"> Presencial </asp:ListItem>
                         <asp:ListItem Value="3"> Ambos </asp:ListItem>
                     </asp:DropDownList>
@@ -258,7 +258,7 @@
 
                             <asp:DropDownList ID="tipo" runat="server" CssClass="form-control" ValidationGroup="Button1">
                                 <asp:ListItem Value="" Selected="True" disabled="true"> Selecciona una opción </asp:ListItem>
-                                <asp:ListItem Value="1"> Líneal </asp:ListItem>
+                                <asp:ListItem Value="1"> Línea </asp:ListItem>
                                 <asp:ListItem Value="2"> Presencial </asp:ListItem>
                                 <asp:ListItem Value="3"> Ambos </asp:ListItem>
                             </asp:DropDownList>

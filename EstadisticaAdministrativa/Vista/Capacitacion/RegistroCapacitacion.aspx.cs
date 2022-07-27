@@ -69,15 +69,15 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
             if (!fechaValida || dt1 >= dt2)
             {
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved error fechas', function() {}, 'popup1');", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Información", "mensaje('Error','Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
-                MessageBox.Show("Error, favor de verificar valores");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.', function() {}, 'popup1');", true);
+               // ScriptManager.RegisterStartupScript(this, this.GetType(), "Información", "mensaje('Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
+              //  MessageBox.Show("Error, favor de verificar valores");
                 return null;
             }
             if (numhombres == 0 && nummujeres == 0)
             {
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved error numeros', function() {}, 'popup1');", true);
-                MessageBox.Show("Error, favor de verificar valores");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Favor de verificar asistencias.', function() {}, 'popup1');", true);
+                //MessageBox.Show("Error, favor de verificar valores");
                 return null;
             }
 
@@ -145,16 +145,16 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
 
             if (!fechaValida || dt1 >= dt2)
             {
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Successfully', function() {}, 'popup1');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "Información", "mensaje('Error','Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
-                MessageBox.Show("Error, favor de verificar valores de fechas");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.', function() {}, 'popup1');", true);
+               // ScriptManager.RegisterStartupScript(this, GetType(), "Información", "mensaje('Error','Favor de verificar fecha de fin no puede ser menor a la fecha de inicio.','danger');", true);
+                //MessageBox.Show("Error, favor de verificar valores de fechas");
                 return null;
             }
             if (numhombres == 0 && nummujeres == 0)
             {
                 
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Successfully', function() {}, 'popup1');", true);
-                MessageBox.Show("Error, favor de verificar valores");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Favor de verificar asistencias.', function() {}, 'popup1');", true);
+              //  MessageBox.Show("Error, favor de verificar valores");
                 return null;
             }
 
@@ -271,8 +271,8 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             var guardarnuevo = Nuevover();
             if (guardarnuevo == null)
             {
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Error', function() {}, 'popup1');", true);
-                MessageBox.Show("Error, Capacitación no guarda");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Capacitación no guardada.', function() {}, 'popup1');", true);
+                //MessageBox.Show("Error, Capacitación no guarda");
                 mostrarTabla();
                 limpiarCampoos();
             }
@@ -280,8 +280,8 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
             {
 
                 CapacitacionDAO.Guardar(guardarnuevo);
-                this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Guardado', function() {}, 'popup2');", true);
-                MessageBox.Show("Exito, Capacitación guardada");
+                this.ClientScript.RegisterStartupScript(this.GetType(), "Éxito", "alertify.alert('Capacitación guardada.', function() {}, 'popup2');", true);
+               // MessageBox.Show("Exito, Capacitación guardada");
                 limpiarCampoos();
                 mostrarTabla();
             }
@@ -435,14 +435,14 @@ namespace EstadisticaAdministrativa.Vista.Capacitacion
                 if (guardarnuevo==null)
                 {
 
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Error', function() {}, 'popup1');", true);
-                    MessageBox.Show("Error, Capacitación no guardada");
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "Error", "alertify.alert('Capacitación no modificada.', function() {}, 'popup1');", true);
+                    //MessageBox.Show("Error, Capacitación no guardada");
                 }
                 else
                 {
                     CapacitacionDAO.Guardar(guardarnuevo);
-                    this.ClientScript.RegisterStartupScript(this.GetType(), "Not Saved", "alertify.alert('Record Not Saved Guardada', function() {}, 'popup2');", true);
-                    MessageBox.Show("Exito, Capacitación modificada");
+                    this.ClientScript.RegisterStartupScript(this.GetType(), "Éxito", "alertify.alert('Capacitación modificada.', function() {}, 'popup2');", true);
+                  //  MessageBox.Show("Exito, Capacitación modificada");
                     mascara.Visible = false;
                     mostrarTabla();
                 }
