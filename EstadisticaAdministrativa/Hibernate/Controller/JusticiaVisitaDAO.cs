@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Controller
 {
@@ -64,7 +63,7 @@ namespace EstadisticaAdministrativa.Hibernate.Controller
                 NHibernateHelper.OpenSession();
                 return NHibernateHelper.Sesion
                     .CreateCriteria(typeof(JusticiaVisita))
-                    .List<JusticiaVisita>(); 
+                    .List<JusticiaVisita>();
             }
             catch (Exception e)
             {

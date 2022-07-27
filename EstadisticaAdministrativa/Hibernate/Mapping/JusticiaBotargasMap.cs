@@ -1,15 +1,12 @@
 ﻿using EstadisticaAdministrativa.Hibernate.Model;
 using FluentNHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EstadisticaAdministrativa.Hibernate.Mapping
 {
     class JusticiaBotargasMap : ClassMap<JusticiaBotarga>
     {
-        public JusticiaBotargasMap(){
+        public JusticiaBotargasMap()
+        {
             Table("tbljusticiabotargas");
             Id(x => x.id).GeneratedBy.Identity();
             Map(x => x.fechaReporta);

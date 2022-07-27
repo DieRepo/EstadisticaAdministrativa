@@ -1,13 +1,8 @@
-﻿using EstadisticaAdministrativa.Hibernate;
-using EstadisticaAdministrativa.Hibernate.Controller;
-using EstadisticaAdministrativa.Hibernate.Model;
+﻿using EstadisticaAdministrativa.Hibernate.Controller;
 using EstadisticaAdministrativa.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace EstadisticaAdministrativa.Vista.Justicia
@@ -22,7 +17,8 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             GenerarConsulta();
         }
 
-        protected void GenerarConsulta(){
+        protected void GenerarConsulta()
+        {
             mostrarReporteLudicas();
             mostrarReporteGuiadas();
             mostrarReporteApoyoBotargas();
@@ -34,10 +30,10 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             query = "SELECT j.idTipo , v.nombreTipo , SUM(j.ninoHombre) ninosH, SUM(j.ninoMujer) ninosM, "
                 + " SUM(j.padres) padres, SUM(j.madres) madres, "
                 + " SUM(j.docenteHombre) docenteH , SUM(j.docenteMujer) docenteM "
-                + " from tbljusticiaregistros j " 
-                + " LEFT JOIN tblcatvisita v ON v.id = j.idTipo" 
-                +" left join tbljusticia js ON j.idRegistro = js.id"
-                + " where j.idTipo in (1, 2, 3) " 
+                + " from tbljusticiaregistros j "
+                + " LEFT JOIN tblcatvisita v ON v.id = j.idTipo"
+                + " left join tbljusticia js ON j.idRegistro = js.id"
+                + " where j.idTipo in (1, 2, 3) "
                 + condicionFechas1 + "  group by j.idTipo ";
             List<object[]> result = (List<object[]>)JusticiaVisitaDAO.ObtenerConsultaNativa(query);
             tablaVisitasLudicas.DataSource = convertirReporteVisita(result);
@@ -51,7 +47,7 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             query = "SELECT j.idTipo , v.nombreTipo , SUM(j.ninoHombre) ninosH, SUM(j.ninoMujer) ninosM, "
                 + " SUM(j.padres) padres, SUM(j.madres) madres, "
                 + " SUM(j.docenteHombre) docenteH , SUM(j.docenteMujer) docenteM "
-                + " from tbljusticiaregistros j " 
+                + " from tbljusticiaregistros j "
                 + " LEFT JOIN tblcatvisita v ON v.id = j.idTipo"
                 + " left join tbljusticia js ON j.idRegistro = js.id"
                 + " where j.idTipo in (4) " + condicionFechas1 + " group by j.idTipo ";
@@ -64,10 +60,10 @@ namespace EstadisticaAdministrativa.Vista.Justicia
         {
             query = "SELECT  1, SUM(b.eventos) eventos, SUM(b.total) total , SUM(b.dias) dias , j.FechaRegistro" +
                 "    FROM tbljusticiabotargas b" +
-                "    RIGHT JOIN tbljusticia j ON b.idRegistro = j.Id "+
+                "    RIGHT JOIN tbljusticia j ON b.idRegistro = j.Id " +
                 condicionFechas2;
             List<object[]> lista = JusticiaVisitaDAO.ObtenerConsultaNativa(query).ToList();
-            tablaApoyoBotargas.DataSource =  convertirReporteBotargas( lista);
+            tablaApoyoBotargas.DataSource = convertirReporteBotargas(lista);
             tablaApoyoBotargas.DataBind();
         }
 
@@ -116,8 +112,8 @@ namespace EstadisticaAdministrativa.Vista.Justicia
             condicionFechas1 = " AND js.FechaReporta between '" + fechaDeInicio + " 00:00:00' and '"
                  + fechaDeFin + " 23:59:00' "; ;
 
-            condicionFechas2 = " WHERE j.FechaReporta between '"+fechaDeInicio+" 00:00:00' and '"
-                 + fechaDeFin+ " 23:59:00' ";
+            condicionFechas2 = " WHERE j.FechaReporta between '" + fechaDeInicio + " 00:00:00' and '"
+                 + fechaDeFin + " 23:59:00' ";
             GenerarConsulta();
         }
     }
